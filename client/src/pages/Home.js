@@ -3,9 +3,9 @@ import Comments from '../components/Comments';
 
 const Home = () => {
     return (
-        <div className='home'>
+        <main className='home'>
             <Comments />
-        </div>
+        </main>
     )
 }
 
