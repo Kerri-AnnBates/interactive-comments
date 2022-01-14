@@ -357,3 +357,20 @@ body {
 .comments {
   padding: 50px 0;
 }
+
+.comment {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  color: #67727e;
+}
+
+.username {
+  color: #324152;
+  font-weight: 700;
+}
+
+.user-actions {
+  font-weight: 700;
+  color: #5457b6;
+}
