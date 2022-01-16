@@ -5,6 +5,7 @@
     padding: 20px;
     border-radius: 10px;
     color: $greyishBlue;
+    position: relative;
 }
 
 .username {
@@ -16,6 +17,9 @@
 .user-actions {
     font-weight: 700;
     color: $moderateBlue;
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
 }
 
 .comment-details {
