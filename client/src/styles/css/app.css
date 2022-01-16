@@ -383,6 +383,9 @@ img {
   right: 20px;
   bottom: 30px;
 }
+.user-actions > span {
+  margin-right: 5px;
+}
 
 .comment-details {
   display: flex;

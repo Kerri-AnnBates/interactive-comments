@@ -1,6 +1,7 @@
 import React from 'react';
 import avatar from '../images/avatars/image-amyrobson.png';
 import Vote from './Vote';
+import replyIcon from '../images/icon-reply.svg';
 
 const Comment = () => {
     return (
@@ -11,7 +12,7 @@ const Comment = () => {
             </div>
 
             <Vote />
-            <div className='user-actions'><span>Reply</span></div>
+            <div className='user-actions'><span><img alt='reply icon' src={replyIcon} /></span> Reply</div>
         </div>
     )
 }
