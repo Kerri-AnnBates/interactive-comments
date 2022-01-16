@@ -10,9 +10,19 @@
 .username {
     color: $darkBlue;
     font-weight: 700;
+    margin: 0 15px;
 }
 
 .user-actions {
     font-weight: 700;
     color: $moderateBlue;
+}
+
+.comment-details {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 40px;
 }

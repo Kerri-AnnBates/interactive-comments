@@ -354,6 +354,11 @@ body {
   padding: 0 20px;
 }
 
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
 .comments {
   padding: 50px 0;
 }
@@ -368,9 +373,19 @@ body {
 .username {
   color: #324152;
   font-weight: 700;
+  margin: 0 15px;
 }
 
 .user-actions {
   font-weight: 700;
   color: #5457b6;
+}
+
+.comment-details {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
 }
