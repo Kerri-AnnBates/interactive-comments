@@ -6,6 +6,12 @@
     border-radius: 10px;
     color: $greyishBlue;
     position: relative;
+
+    @media screen and (min-width: 600px) {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-start;
+    }
 }
 
 .username {
@@ -20,6 +26,11 @@
     position: absolute;
     right: 20px;
     bottom: 30px;
+
+    @media screen and (min-width: 600px) {
+        top: 30px;
+        bottom: auto;
+    }
 
     img {
         margin-right: 5px;

@@ -369,6 +369,13 @@ img {
   color: #67727e;
   position: relative;
 }
+@media screen and (min-width: 600px) {
+  .comment {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+  }
+}
 
 .username {
   color: #324152;
@@ -382,6 +389,12 @@ img {
   position: absolute;
   right: 20px;
   bottom: 30px;
+}
+@media screen and (min-width: 600px) {
+  .user-actions {
+    top: 30px;
+    bottom: auto;
+  }
 }
 .user-actions img {
   margin-right: 5px;
@@ -410,6 +423,12 @@ img {
   color: #5457b6;
   display: inline-block;
   border-radius: 8px;
+  text-align: center;
+}
+@media screen and (min-width: 600px) {
+  .vote {
+    margin-right: 20px;
+  }
 }
 .vote button {
   color: #c3c4ef;
