@@ -388,3 +388,17 @@ img {
 .avatar {
   width: 40px;
 }
+
+.vote {
+  background-color: #f5f6fa;
+  color: #5457b6;
+  display: inline-block;
+  border-radius: 8px;
+}
+.vote button {
+  color: #c3c4ef;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 10px 10px;
+}
