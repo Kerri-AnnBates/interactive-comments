@@ -383,8 +383,17 @@ img {
   right: 20px;
   bottom: 30px;
 }
-.user-actions > span {
+.user-actions img {
   margin-right: 5px;
+}
+.user-actions .delete {
+  color: #ed6468;
+}
+.user-actions > span {
+  margin-left: 15px;
+}
+.user-actions > span:hover {
+  cursor: pointer;
 }
 
 .comment-details {

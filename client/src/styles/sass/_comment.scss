@@ -21,8 +21,20 @@
     right: 20px;
     bottom: 30px;
 
-    &>span {
+    img {
         margin-right: 5px;
+    }
+
+    .delete {
+        color: $softRed;
+    }
+
+    &>span {
+        margin-left: 15px;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 
