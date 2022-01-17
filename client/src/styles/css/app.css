@@ -443,6 +443,9 @@ img {
   background-color: transparent;
   padding: 10px 10px;
 }
+.vote button:hover {
+  cursor: pointer;
+}
 
 @media screen and (min-width: 600px) {
   .vote-container {
