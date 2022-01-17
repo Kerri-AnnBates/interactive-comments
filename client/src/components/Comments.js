@@ -30,7 +30,6 @@ const Comments = () => {
                         content={comment.content}
                         createdAt={comment.createdAt}
                         key={comment.id}
-                        replies={comment.replies}
                         vote={comment.score}
                         user={comment.user}
                     />)

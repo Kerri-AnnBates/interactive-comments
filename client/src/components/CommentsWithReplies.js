@@ -1,6 +1,5 @@
 import React from 'react'
 import Comment from './Comment';
-import Vote from './Vote';
 
 const CommentsWithReplies = (props) => {
     const { id, content, createdAt, replies, vote, user } = props;
