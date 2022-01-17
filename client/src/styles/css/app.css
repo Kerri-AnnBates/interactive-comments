@@ -362,12 +362,19 @@ img {
   padding: 50px 0;
 }
 
+.replies {
+  margin-left: 40px;
+  padding-left: 40px;
+  border-left: 3px solid #eaecf1;
+}
+
 .comment {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   color: #67727e;
   position: relative;
+  margin-bottom: 15px;
 }
 @media screen and (min-width: 600px) {
   .comment {
@@ -423,7 +430,6 @@ img {
   color: #5457b6;
   display: inline-block;
   border-radius: 8px;
-  text-align: center;
 }
 @media screen and (min-width: 600px) {
   .vote {
@@ -436,4 +442,12 @@ img {
   border: none;
   background-color: transparent;
   padding: 10px 10px;
+}
+
+@media screen and (min-width: 600px) {
+  .vote-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
