@@ -368,12 +368,15 @@ img {
   border-left: 3px solid #eaecf1;
 }
 
-.comment {
+.comment, .comment-editor {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   color: #67727e;
   position: relative;
+}
+
+.comment {
   margin-bottom: 15px;
 }
 @media screen and (min-width: 600px) {

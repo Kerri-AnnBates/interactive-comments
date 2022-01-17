@@ -3,13 +3,7 @@ import Comment from './Comment';
 import data from '../data/data.json';
 import CommentsWithReplies from './CommentsWithReplies';
 
-const Comments = () => {
-    const [comments, setComments] = useState([]);
-
-    useEffect(() => {
-        console.log(data);
-        setComments(data.comments);
-    }, []);
+const Comments = ({ comments }) => {
 
     return (
         <div className='comments'>
