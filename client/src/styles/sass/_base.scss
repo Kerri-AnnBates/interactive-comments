@@ -10,6 +10,7 @@ body {
     font-family: 'Rubik', sans-serif;
     min-height: 100%;
     background-color: $veryLightGrey;
+    padding: 50px 0;
 }
 
 .container {
@@ -23,9 +24,8 @@ img {
     max-width: 100%;
 }
 
-// Comments Section
-.comments {
-    padding: 50px 0;
+button:hover {
+    cursor: pointer;
 }
 
 // Replies

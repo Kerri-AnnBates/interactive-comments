@@ -349,6 +349,7 @@ body {
   font-family: "Rubik", sans-serif;
   min-height: 100%;
   background-color: #f5f6fa;
+  padding: 50px 0;
 }
 
 .container {
@@ -362,8 +363,8 @@ img {
   max-width: 100%;
 }
 
-.comments {
-  padding: 50px 0;
+button:hover {
+  cursor: pointer;
 }
 
 .replies {
@@ -397,6 +398,15 @@ textarea {
   border-radius: 10px;
   color: #67727e;
   position: relative;
+}
+
+.comment-editor textarea {
+  margin-bottom: 20px;
+}
+.comment-editor button {
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
 }
 
 .comment {
@@ -468,9 +478,6 @@ textarea {
   border: none;
   background-color: transparent;
   padding: 10px 10px;
-}
-.vote button:hover {
-  cursor: pointer;
 }
 
 @media screen and (min-width: 600px) {

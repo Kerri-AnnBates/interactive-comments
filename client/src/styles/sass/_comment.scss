@@ -7,6 +7,18 @@
     position: relative;
 }
 
+.comment-editor {
+    textarea {
+        margin-bottom: 20px;
+    }
+
+    button {
+        position: absolute;
+        right: 20px;
+        bottom: 25px;
+    }
+}
+
 .comment {
     margin-bottom: 15px;
 
