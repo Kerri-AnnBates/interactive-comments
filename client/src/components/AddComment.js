@@ -5,7 +5,7 @@ const AddComment = ({ currentUser }) => {
         <div className='comment-editor'>
             <textarea defaultValue='Add a comment...'></textarea>
             <div className='avatar'><img alt='author profile picture' src={currentUser?.image.png} /></div>
-            <button>Send</button>
+            <button className='primary-btn'>Send</button>
         </div>
     )
 }

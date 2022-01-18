@@ -337,6 +337,10 @@ template {
   display: none;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   height: 100%;
 }
@@ -366,6 +370,25 @@ img {
   margin-left: 40px;
   padding-left: 40px;
   border-left: 3px solid #eaecf1;
+}
+
+.primary-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 8px;
+  border: none;
+  background-color: #5457b6;
+  color: #ffffff;
+}
+
+textarea {
+  min-width: 100%;
+  min-height: 100px;
+  resize: none;
+  color: #67727e;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #eaecf1;
 }
 
 .comment, .comment-editor {
