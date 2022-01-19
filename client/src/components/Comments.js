@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Comment from './Comment';
-import data from '../data/data.json';
 import CommentsWithReplies from './CommentsWithReplies';
 
 const Comments = ({ comments }) => {
