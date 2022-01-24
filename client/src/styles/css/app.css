@@ -400,13 +400,40 @@ textarea {
   position: relative;
 }
 
-.comment-editor textarea {
+@media screen and (min-width: 600px) {
+  .comment-editor {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+}
+.comment-editor form {
   margin-bottom: 20px;
+}
+@media screen and (min-width: 600px) {
+  .comment-editor form {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 20px;
+    width: calc(100% - 170px);
+  }
+}
+@media screen and (min-width: 600px) {
+  .comment-editor textarea {
+    margin-right: 20px;
+  }
 }
 .comment-editor button {
   position: absolute;
   right: 20px;
   bottom: 25px;
+}
+@media screen and (min-width: 600px) {
+  .comment-editor button {
+    position: relative;
+    right: auto;
+    bottom: auto;
+  }
 }
 
 .comment {
