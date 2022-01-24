@@ -22,7 +22,7 @@ const CommentsWithReplies = (props) => {
                         createdAt={reply.createdAt}
                         vote={reply.score}
                         user={reply.user}
-                        replyTo={reply.replyTo}
+                        replyingTo={reply.replyingTo}
                         key={reply.id}
                     />))}
             </div>
