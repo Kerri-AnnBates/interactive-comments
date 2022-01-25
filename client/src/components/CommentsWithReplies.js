@@ -2,7 +2,7 @@ import React from 'react'
 import Comment from './Comment';
 
 const CommentsWithReplies = (props) => {
-    const { id, content, createdAt, replies, vote, user } = props;
+    const { id, content, createdAt, replies, vote, user, currentUser } = props;
 
     return (
         <>
@@ -12,6 +12,7 @@ const CommentsWithReplies = (props) => {
                 createdAt={createdAt}
                 vote={vote}
                 user={user}
+                currentUser={currentUser}
             />
 
             <div className='replies'>
@@ -24,6 +25,7 @@ const CommentsWithReplies = (props) => {
                         user={reply.user}
                         replyingTo={reply.replyingTo}
                         key={reply.id}
+                        currentUser={currentUser}
                     />))}
             </div>
         </>

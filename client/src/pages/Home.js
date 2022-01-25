@@ -16,7 +16,7 @@ const Home = () => {
     return (
         <main className='home'>
             <div className='container'>
-                <Comments comments={comments} />
+                <Comments comments={comments} currentUser={currentUser} />
                 <AddComment currentUser={currentUser} />
             </div>
         </main>
