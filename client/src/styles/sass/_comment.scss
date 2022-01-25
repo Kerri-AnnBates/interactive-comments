@@ -58,7 +58,19 @@
 .username {
     color: $darkBlue;
     font-weight: 700;
-    margin: 0 15px;
+    margin-left: 15px;
+}
+
+.user-status {
+    background-color: $moderateBlue;
+    color: $white;
+    font-size: 8px;
+    padding: 3px 5px;
+    margin-left: 5px;
+}
+
+.created-date {
+    margin-left: 10px;
 }
 
 .reply-username {

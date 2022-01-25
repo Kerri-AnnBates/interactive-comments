@@ -352,6 +352,10 @@ body {
   padding: 50px 0;
 }
 
+p {
+  line-height: 1.5rem;
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -450,7 +454,19 @@ textarea {
 .username {
   color: #324152;
   font-weight: 700;
-  margin: 0 15px;
+  margin-left: 15px;
+}
+
+.user-status {
+  background-color: #5457b6;
+  color: #ffffff;
+  font-size: 8px;
+  padding: 3px 5px;
+  margin-left: 5px;
+}
+
+.created-date {
+  margin-left: 10px;
 }
 
 .reply-username {
