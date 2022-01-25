@@ -36,11 +36,16 @@
         position: absolute;
         right: 20px;
         bottom: 25px;
+        transition: background-color ease 500ms;
 
         @media screen and (min-width: 600px) {
             position: relative;
             right: auto;
             bottom: auto;
+        }
+
+        &:hover {
+            background-color: lighten($color: $moderateBlue, $amount: 20%);
         }
     }
 }
@@ -75,7 +80,6 @@
 
 .reply-username {
     color: $moderateBlue;
-    font-weight: 700;
 }
 
 .user-actions {
@@ -100,9 +104,11 @@
 
     &>span {
         margin-left: 15px;
+        transition: opacity ease 500ms;
 
         &:hover {
             cursor: pointer;
+            opacity: 0.6;
         }
     }
 }

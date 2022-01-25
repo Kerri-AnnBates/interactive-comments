@@ -56,4 +56,10 @@ textarea {
     padding: 20px;
     border-radius: 10px;
     border: 1px solid $lightGrey;
+    caret-color: $moderateBlue;
+
+    &:focus {
+        outline: none;
+        border: 1px $moderateBlue solid;
+    }
 }

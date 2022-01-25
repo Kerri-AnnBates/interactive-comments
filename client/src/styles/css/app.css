@@ -394,6 +394,11 @@ textarea {
   padding: 20px;
   border-radius: 10px;
   border: 1px solid #eaecf1;
+  caret-color: #5457b6;
+}
+textarea:focus {
+  outline: none;
+  border: 1px #5457b6 solid;
 }
 
 .comment, .comment-editor {
@@ -431,6 +436,7 @@ textarea {
   position: absolute;
   right: 20px;
   bottom: 25px;
+  transition: background-color ease 500ms;
 }
 @media screen and (min-width: 600px) {
   .comment-editor button {
@@ -438,6 +444,9 @@ textarea {
     right: auto;
     bottom: auto;
   }
+}
+.comment-editor button:hover {
+  background-color: #9b9dd5;
 }
 
 .comment {
@@ -471,7 +480,6 @@ textarea {
 
 .reply-username {
   color: #5457b6;
-  font-weight: 700;
 }
 
 .user-actions {
@@ -495,9 +503,11 @@ textarea {
 }
 .user-actions > span {
   margin-left: 15px;
+  transition: opacity ease 500ms;
 }
 .user-actions > span:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 
 .comment-details {
@@ -526,6 +536,10 @@ textarea {
   border: none;
   background-color: transparent;
   padding: 10px 10px;
+  transition: color ease 500ms;
+}
+.vote button:hover {
+  color: #5457b6;
 }
 
 @media screen and (min-width: 600px) {
