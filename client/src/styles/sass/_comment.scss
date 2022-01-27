@@ -118,6 +118,10 @@
     align-items: center;
 }
 
+.content-container {
+    flex-grow: 1;
+}
+
 .avatar {
     width: 40px;
 }
