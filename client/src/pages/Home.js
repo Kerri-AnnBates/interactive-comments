@@ -16,7 +16,11 @@ const Home = () => {
     console.log(comments);
 
     const addComment = (newComment) => {
-        const comment = { ...newComment, id: comments.length + 1 }
+        const comment = {
+            ...newComment,
+            id: comments.length + 1,
+            user: currentUser
+        }
 
         setComments([...comments, comment]);
     }
