@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-const AddComment = ({ currentUser }) => {
-    const [commentVal, setCommentVal] = useState('');
+const AddComment = ({ currentUser, addComment }) => {
+    const [userCommentValue, setUserCommentValue] = useState('');
 
     const handleCommentChange = (e) => {
-        setCommentVal(e.target.value);
+        setUserCommentValue(e.target.value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newComment = {
+            createdAt: 'Today',
+            content: userCommentValue,
+            replies: [],
+            score: 0
+        }
+
+        addComment(newComment);
+        setUserCommentValue('');
     }
 
     return (
         <div className='comment-editor'>
-            <form>
-                <textarea name="comment" value={commentVal} onChange={handleCommentChange} placeholder='Add a comment...'></textarea>
+            <form onSubmit={handleSubmit}>
+                <textarea name="comment" value={userCommentValue} onChange={handleCommentChange} placeholder='Add a comment...'></textarea>
                 <button className='primary-btn'>Send</button>
             </form>
             <div className='avatar'><img alt='author profile picture' src={currentUser?.image.png} /></div>

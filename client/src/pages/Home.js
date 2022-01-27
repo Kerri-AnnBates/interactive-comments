@@ -13,11 +13,19 @@ const Home = () => {
         setCurrentUser(data.currentUser);
     }, []);
 
+    console.log(comments);
+
+    const addComment = (newComment) => {
+        const comment = { ...newComment, id: comments.length + 1 }
+
+        setComments([...comments, comment]);
+    }
+
     return (
         <main className='home'>
             <div className='container'>
                 <Comments comments={comments} currentUser={currentUser} />
-                <AddComment currentUser={currentUser} />
+                <AddComment currentUser={currentUser} addComment={addComment} />
             </div>
         </main>
     )
