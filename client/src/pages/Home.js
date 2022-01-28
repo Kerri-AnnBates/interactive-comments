@@ -25,10 +25,15 @@ const Home = () => {
         setComments([...comments, comment]);
     }
 
+    const deleteComment = (id) => {
+        const updatedComments = comments.filter(comment => comment.id !== id);
+        setComments(updatedComments);
+    }
+
     return (
         <main className='home'>
             <div className='container'>
-                <Comments comments={comments} currentUser={currentUser} />
+                <Comments comments={comments} currentUser={currentUser} deleteComment={deleteComment} />
                 <AddComment currentUser={currentUser} addComment={addComment} />
             </div>
         </main>

@@ -3,7 +3,7 @@ import Vote from './Vote';
 import UserActions from './UserActions';
 
 const Comment = (props) => {
-    const { id, content, createdAt, replyingTo, vote, user, currentUser } = props;
+    const { id, content, createdAt, replyingTo, vote, user, currentUser, deleteComment } = props;
 
     return (
         <div className={`comment ${replyingTo ? 'reply' : ''}`}>
@@ -15,7 +15,7 @@ const Comment = (props) => {
             </div>
 
             <Vote vote={vote} />
-            <UserActions currentUser={currentUser} user={user} />
+            <UserActions currentUser={currentUser} user={user} deleteComment={deleteComment} id={id} />
         </div>
     )
 }

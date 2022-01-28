@@ -2,7 +2,7 @@ import React from 'react';
 import Comment from './Comment';
 import CommentsWithReplies from './CommentsWithReplies';
 
-const Comments = ({ comments, currentUser }) => {
+const Comments = ({ comments, currentUser, deleteComment }) => {
 
     return (
         <div className='comments'>
@@ -27,6 +27,7 @@ const Comments = ({ comments, currentUser }) => {
                         vote={comment.score}
                         user={comment.user}
                         currentUser={currentUser}
+                        deleteComment={deleteComment}
                     />)
                 }
             })}
