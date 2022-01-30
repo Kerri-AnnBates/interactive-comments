@@ -1,0 +1,31 @@
+.modal {
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-container {
+    width: 30%;
+    background-color: $white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.modal-actions {
+    display: flex;
+    // justify-content: space-between;
+
+    button {
+        width: 50%;
+
+        &:first-of-type {
+            margin-right: 10px;
+        }
+    }
+}

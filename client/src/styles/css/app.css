@@ -350,10 +350,17 @@ body {
   min-height: 100%;
   background-color: #f5f6fa;
   padding: 50px 0;
+  position: relative;
 }
 
 p {
   line-height: 1.5rem;
+  color: #67727e;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #324152;
+  margin: 0;
 }
 
 .container {
@@ -367,8 +374,16 @@ img {
   max-width: 100%;
 }
 
+button {
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 8px;
+  border: none;
+}
+
 button:hover {
   cursor: pointer;
+  background-color: #9b9dd5;
 }
 
 .replies {
@@ -378,10 +393,6 @@ button:hover {
 }
 
 .primary-btn {
-  display: inline-block;
-  padding: 10px 25px;
-  border-radius: 8px;
-  border: none;
   background-color: #5457b6;
   color: #ffffff;
 }
@@ -405,7 +416,6 @@ textarea:focus {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  color: #67727e;
   position: relative;
 }
 
@@ -444,9 +454,6 @@ textarea:focus {
     right: auto;
     bottom: auto;
   }
-}
-.comment-editor button:hover {
-  background-color: #9b9dd5;
 }
 
 .comment {
@@ -552,4 +559,34 @@ textarea:focus {
     flex-direction: column;
     align-items: center;
   }
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-container {
+  width: 30%;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.modal-actions {
+  display: flex;
+}
+.modal-actions button {
+  width: 50%;
+}
+.modal-actions button:first-of-type {
+  margin-right: 10px;
 }
