@@ -3,7 +3,17 @@ import Vote from './Vote';
 import UserActions from './UserActions';
 
 const Comment = (props) => {
-    const { id, content, createdAt, replyingTo, vote, user, currentUser, deleteComment } = props;
+    const { id,
+        content,
+        createdAt,
+        replyingTo,
+        vote,
+        user,
+        currentUser,
+        deleteComment,
+        setIsOpenModal,
+        setCommentToDeleteId
+    } = props;
 
     return (
         <div className={`comment ${replyingTo ? 'reply' : ''}`}>
@@ -15,7 +25,14 @@ const Comment = (props) => {
             </div>
 
             <Vote vote={vote} />
-            <UserActions currentUser={currentUser} user={user} deleteComment={deleteComment} id={id} />
+            <UserActions
+                currentUser={currentUser}
+                user={user}
+                deleteComment={deleteComment}
+                id={id}
+                setIsOpenModal={setIsOpenModal}
+                setCommentToDeleteId={setCommentToDeleteId}
+            />
         </div>
     )
 }
