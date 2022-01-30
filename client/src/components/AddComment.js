@@ -9,6 +9,14 @@ const AddComment = ({ currentUser, addComment }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        userCommentValue.replace(/s/g, '');
+
+        if (userCommentValue == '') {
+            return;
+        }
+
+
         const newComment = {
             createdAt: 'Today',
             content: userCommentValue,

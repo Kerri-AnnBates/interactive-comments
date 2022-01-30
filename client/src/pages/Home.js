@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import data from '../data/data.json';
 import AddComment from '../components/AddComment';
 import Comments from '../components/Comments';
+import DeleteModal from '../components/DeleteModal';
 
 const Home = () => {
     const [comments, setComments] = useState([]);
@@ -36,6 +37,7 @@ const Home = () => {
                 <Comments comments={comments} currentUser={currentUser} deleteComment={deleteComment} />
                 <AddComment currentUser={currentUser} addComment={addComment} />
             </div>
+            <DeleteModal />
         </main>
     )
 }
