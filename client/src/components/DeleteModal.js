@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const DeleteModal = (props) => {
     const { setIsOpenModal, setCommentToDeleteId, deleteComment } = props;
@@ -11,6 +11,13 @@ const DeleteModal = (props) => {
     const handleDelete = () => {
         deleteComment();
     }
+
+    // Prevent body scrolling when modal is open.
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+
+        return () => document.body.style.overflow = '';
+    }, []);
 
     return (
         <div className='modal'>
