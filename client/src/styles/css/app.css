@@ -379,6 +379,7 @@ button {
   padding: 10px 25px;
   border-radius: 8px;
   border: none;
+  color: #ffffff;
 }
 
 button:hover {
@@ -394,7 +395,20 @@ button:hover {
 
 .primary-btn {
   background-color: #5457b6;
-  color: #ffffff;
+}
+
+.secondary-btn {
+  background-color: #67727e;
+}
+.secondary-btn:hover {
+  background-color: #393f46;
+}
+
+.danger-btn {
+  background-color: #ed6468;
+}
+.danger-btn:hover {
+  background-color: #d3181e;
 }
 
 textarea {
