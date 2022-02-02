@@ -18,6 +18,8 @@ const Comments = (props) => {
                         vote={comment.score}
                         user={comment.user}
                         currentUser={currentUser}
+                        setIsOpenModal={setIsOpenModal}
+                        setCommentToDeleteId={setCommentToDeleteId}
                     />)
                 } else {
                     return (<Comment

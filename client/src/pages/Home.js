@@ -16,8 +16,6 @@ const Home = () => {
         setCurrentUser(data.currentUser);
     }, []);
 
-    console.log(comments);
-
     const addComment = (newComment) => {
         const comment = {
             ...newComment,

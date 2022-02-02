@@ -2,7 +2,16 @@ import React from 'react'
 import Comment from './Comment';
 
 const CommentsWithReplies = (props) => {
-    const { id, content, createdAt, replies, vote, user, currentUser } = props;
+    const { id,
+        content,
+        createdAt,
+        replies,
+        vote,
+        user,
+        currentUser,
+        setIsOpenModal,
+        setCommentToDeleteId
+    } = props;
 
     return (
         <>
@@ -26,6 +35,8 @@ const CommentsWithReplies = (props) => {
                         replyingTo={reply.replyingTo}
                         key={reply.id}
                         currentUser={currentUser}
+                        setIsOpenModal={setIsOpenModal}
+                        setCommentToDeleteId={setCommentToDeleteId}
                     />))}
             </div>
         </>
