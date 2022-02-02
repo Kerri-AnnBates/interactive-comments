@@ -5,11 +5,16 @@ import editIcon from '../images/icon-edit.svg';
 
 
 const UserActions = (props) => {
-    const { currentUser, user, id, setIsOpenModal, setCommentToDeleteId } = props;
+    const { currentUser, user, id, setIsOpenModal, setCommentToDeleteId, setReplyToDeleteId } = props;
 
     const handleDelete = () => {
         setIsOpenModal(true);
-        setCommentToDeleteId(id);
+
+        if (setCommentToDeleteId) {
+            setCommentToDeleteId(id);
+        } else {
+            setReplyToDeleteId(id);
+        }
     }
 
     return (

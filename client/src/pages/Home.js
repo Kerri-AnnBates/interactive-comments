@@ -9,6 +9,7 @@ const Home = () => {
     const [currentUser, setCurrentUser] = useState(null);
     const [isModalOpen, setIsOpenModal] = useState(false);
     const [commentToDeleteId, setCommentToDeleteId] = useState(null);
+    const [replyToDeleteId, setReplyToDeleteId] = useState(null);
 
     useEffect(() => {
         console.log(data);
@@ -27,10 +28,26 @@ const Home = () => {
     }
 
     const deleteComment = () => {
-        if (commentToDeleteId != null) {
+        if (commentToDeleteId) {
             const updatedComments = comments.filter(comment => comment.id !== commentToDeleteId);
             setComments(updatedComments);
             setCommentToDeleteId(null);
+            setIsOpenModal(false);
+        } else {
+            // check if it is a reply. how?
+            comments.forEach(comm => {
+                if (comm.replies.length > 0) {
+                    // Check if the id matches any of these replies.
+                    const reply = comm.replies.find(rep => rep.id == replyToDeleteId);
+
+                    if (reply) {
+                        const updateReps = comm.replies.filter(rep => rep.id !== replyToDeleteId);
+                        comm.replies = updateReps;
+                    }
+                }
+            });
+
+            setReplyToDeleteId(null);
             setIsOpenModal(false);
         }
     }
@@ -44,6 +61,7 @@ const Home = () => {
                     deleteComment={deleteComment}
                     setIsOpenModal={setIsOpenModal}
                     setCommentToDeleteId={setCommentToDeleteId}
+                    setReplyToDeleteId={setReplyToDeleteId}
                 />
                 <AddComment currentUser={currentUser} addComment={addComment} />
             </div>

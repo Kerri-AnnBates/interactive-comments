@@ -3,7 +3,14 @@ import Comment from './Comment';
 import CommentsWithReplies from './CommentsWithReplies';
 
 const Comments = (props) => {
-    const { comments, currentUser, deleteComment, setIsOpenModal, setCommentToDeleteId } = props;
+    const {
+        comments,
+        currentUser,
+        deleteComment,
+        setIsOpenModal,
+        setCommentToDeleteId,
+        setReplyToDeleteId
+    } = props;
 
     return (
         <div className='comments'>
@@ -20,6 +27,7 @@ const Comments = (props) => {
                         currentUser={currentUser}
                         setIsOpenModal={setIsOpenModal}
                         setCommentToDeleteId={setCommentToDeleteId}
+                        setReplyToDeleteId={setReplyToDeleteId}
                     />)
                 } else {
                     return (<Comment
