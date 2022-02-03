@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 
 const DeleteModal = (props) => {
-    const { setIsOpenModal, setCommentToDeleteId, deleteComment } = props;
+    const { setIsOpenModal, setCommentToDeleteId, setReplyToDeleteId, deleteComment } = props;
 
     const handleCancel = () => {
         setIsOpenModal(false);
         setCommentToDeleteId(null);
+        setReplyToDeleteId(null);
     }
 
     const handleDelete = () => {

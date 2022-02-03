@@ -68,6 +68,7 @@ const Home = () => {
             {isModalOpen && (<DeleteModal
                 setIsOpenModal={setIsOpenModal}
                 setCommentToDeleteId={setCommentToDeleteId}
+                setReplyToDeleteId={setReplyToDeleteId}
                 deleteComment={deleteComment}
             />)}
         </main>
