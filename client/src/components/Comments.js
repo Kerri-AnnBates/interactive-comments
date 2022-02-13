@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 import CommentsWithReplies from './CommentsWithReplies';
+import EditCommentModal from './EditCommentModal';
 
 const Comments = (props) => {
     const {
@@ -44,6 +45,7 @@ const Comments = (props) => {
                     />)
                 }
             })}
+            {/* <EditCommentModal /> */}
         </div>
     )
 }

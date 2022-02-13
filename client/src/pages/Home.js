@@ -12,7 +12,6 @@ const Home = () => {
     const [replyToDeleteId, setReplyToDeleteId] = useState(null);
 
     useEffect(() => {
-        console.log(data);
         setComments(data.comments);
         setCurrentUser(data.currentUser);
     }, []);
