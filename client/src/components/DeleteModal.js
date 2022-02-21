@@ -10,7 +10,7 @@ const DeleteModal = (props) => {
     const deleteComment = () => {
         if (commentToDeleteId) {
             const updatedComments = commentsData.comments.filter(comment => comment.id !== commentToDeleteId);
-            setCommentsData(updatedComments);
+            setCommentsData({ ...commentsData, comments: updatedComments });
             setCommentToDeleteId(null);
             setIsOpenModal(false);
         } else {
