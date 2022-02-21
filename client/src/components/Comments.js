@@ -1,50 +1,55 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import CommentsContext from '../contexts/CommentsContext';
 import Comment from './Comment';
 import CommentsWithReplies from './CommentsWithReplies';
 
 const Comments = (props) => {
     const {
-        comments,
-        currentUser,
         setIsOpenModal,
         setCommentToDeleteId,
         setReplyToDeleteId,
         setCommToEditId
     } = props;
 
+    const [commentsData, setCommentsData] = useContext(CommentsContext);
+
+    console.log(commentsData);
+
     return (
-        <div className='comments'>
-            {comments.map(comment => {
-                if (comment.replies.length > 0) {
-                    return (<CommentsWithReplies
-                        id={comment.id}
-                        content={comment.content}
-                        createdAt={comment.createdAt}
-                        key={comment.id}
-                        replies={comment.replies}
-                        vote={comment.score}
-                        user={comment.user}
-                        currentUser={currentUser}
-                        setIsOpenModal={setIsOpenModal}
-                        setCommentToDeleteId={setCommentToDeleteId}
-                        setReplyToDeleteId={setReplyToDeleteId}
-                    />)
-                } else {
-                    return (<Comment
-                        id={comment.id}
-                        content={comment.content}
-                        createdAt={comment.createdAt}
-                        key={comment.id}
-                        vote={comment.score}
-                        user={comment.user}
-                        currentUser={currentUser}
-                        setIsOpenModal={setIsOpenModal}
-                        setCommentToDeleteId={setCommentToDeleteId}
-                        setCommToEditId={setCommToEditId}
-                    />)
-                }
-            })}
-        </div>
+        <>
+            {commentsData ? (<div className='comments'>
+                {commentsData.comments && commentsData.comments.map(comment => {
+                    if (comment.replies.length > 0) {
+                        return (<CommentsWithReplies
+                            id={comment.id}
+                            content={comment.content}
+                            createdAt={comment.createdAt}
+                            key={comment.id}
+                            replies={comment.replies}
+                            vote={comment.score}
+                            user={comment.user}
+                            currentUser={commentsData.currentUser}
+                            setIsOpenModal={setIsOpenModal}
+                            setCommentToDeleteId={setCommentToDeleteId}
+                            setReplyToDeleteId={setReplyToDeleteId}
+                        />)
+                    } else {
+                        return (<Comment
+                            id={comment.id}
+                            content={comment.content}
+                            createdAt={comment.createdAt}
+                            key={comment.id}
+                            vote={comment.score}
+                            user={comment.user}
+                            currentUser={commentsData.currentUser}
+                            setIsOpenModal={setIsOpenModal}
+                            setCommentToDeleteId={setCommentToDeleteId}
+                            setCommToEditId={setCommToEditId}
+                        />)
+                    }
+                })}
+            </div>) : (<p>Loading...</p>)}
+        </>
     )
 }
 
