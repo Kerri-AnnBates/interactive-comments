@@ -7,27 +7,14 @@ import EditCommentModal from '../components/EditCommentModal';
 import CommentsContext from '../contexts/CommentsContext';
 
 const Home = () => {
-    const [comments, setComments] = useState([]);
     const [commentsData, setCommentsData] = useContext(CommentsContext);
-    const [currentUser, setCurrentUser] = useState(null);
     const [isModalOpen, setIsOpenModal] = useState(false);
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [commentToDeleteId, setCommentToDeleteId] = useState(null);
     const [replyToDeleteId, setReplyToDeleteId] = useState(null);
 
     useEffect(() => {
         setCommentsData(data);
     }, []);
-
-    const addComment = (newComment) => {
-        const comment = {
-            ...newComment,
-            id: comments.length + 1,
-            user: currentUser
-        }
-
-        setCommentsData([...setCommentsData.comments, comment]);
-    }
 
     return (
         <main className='home'>
@@ -37,7 +24,7 @@ const Home = () => {
                     setCommentToDeleteId={setCommentToDeleteId}
                     setReplyToDeleteId={setReplyToDeleteId}
                 />
-                <AddComment currentUser={commentsData?.currentUser} addComment={addComment} />
+                <AddComment currentUser={commentsData?.currentUser} />
             </div>
             {isModalOpen && (<DeleteModal
                 setIsOpenModal={setIsOpenModal}
