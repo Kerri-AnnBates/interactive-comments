@@ -1,9 +1,7 @@
-import React, { useContext, useState } from 'react'
-import CommentsContext from '../contexts/CommentsContext';
+import React, { useState } from 'react';
 
-const AddComment = ({ currentUser }) => {
+const AddComment = ({ commentsData, setCommentsData }) => {
     const [userCommentValue, setUserCommentValue] = useState('');
-    const [commentsData, setCommentsData] = useContext(CommentsContext);
 
     const addComment = (newComment) => {
         const comment = {
@@ -27,7 +25,7 @@ const AddComment = ({ currentUser }) => {
 
         userCommentValue.replace(/s/g, '');
 
-        if (userCommentValue == '') {
+        if (userCommentValue === '') {
             return;
         }
 
@@ -49,7 +47,7 @@ const AddComment = ({ currentUser }) => {
                 <textarea name="comment" value={userCommentValue} onChange={handleCommentChange} placeholder='Add a comment...'></textarea>
                 <button className='primary-btn'>Send</button>
             </form>
-            <div className='avatar'><img alt='author profile picture' src={currentUser?.image.png} /></div>
+            <div className='avatar'><img alt='author profile picture' src={commentsData?.currentUser.image.png} /></div>
         </div >
     )
 }

@@ -18,7 +18,7 @@ const DeleteModal = (props) => {
             commentsData.comments.forEach(comm => {
                 if (comm.replies.length > 0) {
                     // Check if the id matches any of these replies.
-                    const reply = comm.replies.find(rep => rep.id == replyToDeleteId);
+                    const reply = comm.replies.find(rep => rep.id === replyToDeleteId);
 
                     if (reply) {
                         const updateReps = comm.replies.filter(rep => rep.id !== replyToDeleteId);

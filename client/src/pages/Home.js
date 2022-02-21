@@ -24,7 +24,7 @@ const Home = () => {
                     setCommentToDeleteId={setCommentToDeleteId}
                     setReplyToDeleteId={setReplyToDeleteId}
                 />
-                <AddComment currentUser={commentsData?.currentUser} />
+                <AddComment commentsData={commentsData} setCommentsData={setCommentsData} />
             </div>
             {isModalOpen && (<DeleteModal
                 setIsOpenModal={setIsOpenModal}
