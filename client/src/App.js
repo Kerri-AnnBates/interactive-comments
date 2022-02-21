@@ -1,16 +1,10 @@
 import "./styles/sass/app.scss";
 import Home from './pages/Home';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CommentsContext from "./contexts/CommentsContext";
-import data from './data/data.json';
 
 function App() {
-  const [commentsData, setCommentsData] = useState([]);
-
-  useEffect(() => {
-    console.log(data);
-    setCommentsData(data);
-  }, []);
+  const commentsData = useState(null);
 
   return (
     <CommentsContext.Provider value={commentsData}>

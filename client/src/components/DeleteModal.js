@@ -1,7 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import CommentsContext from '../contexts/CommentsContext';
 
 const DeleteModal = (props) => {
-    const { setIsOpenModal, setCommentToDeleteId, setReplyToDeleteId, deleteComment } = props;
+    const { setIsOpenModal, setCommentToDeleteId, setReplyToDeleteId, commentToDeleteId, replyToDeleteId } = props;
+    const [commentsData, setCommentsData] = useContext(CommentsContext);
+
+    console.log(commentsData);
+
+    const deleteComment = () => {
+        if (commentToDeleteId) {
+            const updatedComments = commentsData.comments.filter(comment => comment.id !== commentToDeleteId);
+            setCommentsData(updatedComments);
+            setCommentToDeleteId(null);
+            setIsOpenModal(false);
+        } else {
+            // check if it is a reply. how?
+            commentsData.comments.forEach(comm => {
+                if (comm.replies.length > 0) {
+                    // Check if the id matches any of these replies.
+                    const reply = comm.replies.find(rep => rep.id == replyToDeleteId);
+
+                    if (reply) {
+                        const updateReps = comm.replies.filter(rep => rep.id !== replyToDeleteId);
+                        comm.replies = updateReps;
+                    }
+                }
+            });
+
+            setReplyToDeleteId(null);
+            setIsOpenModal(false);
+        }
+    }
 
     const handleCancel = () => {
         setIsOpenModal(false);

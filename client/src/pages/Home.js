@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import data from '../data/data.json';
 import AddComment from '../components/AddComment';
 import Comments from '../components/Comments';
 import DeleteModal from '../components/DeleteModal';
+import EditCommentModal from '../components/EditCommentModal';
+import CommentsContext from '../contexts/CommentsContext';
 
 const Home = () => {
     const [comments, setComments] = useState([]);
+    const [commentsData, setCommentsData] = useContext(CommentsContext);
     const [currentUser, setCurrentUser] = useState(null);
     const [isModalOpen, setIsOpenModal] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [commentToDeleteId, setCommentToDeleteId] = useState(null);
+    const [commToEditId, setCommToEditId] = useState(null);
     const [replyToDeleteId, setReplyToDeleteId] = useState(null);
 
     useEffect(() => {
         setComments(data.comments);
         setCurrentUser(data.currentUser);
+        setCommentsData(data);
     }, []);
 
     const addComment = (newComment) => {
@@ -26,41 +32,16 @@ const Home = () => {
         setComments([...comments, comment]);
     }
 
-    const deleteComment = () => {
-        if (commentToDeleteId) {
-            const updatedComments = comments.filter(comment => comment.id !== commentToDeleteId);
-            setComments(updatedComments);
-            setCommentToDeleteId(null);
-            setIsOpenModal(false);
-        } else {
-            // check if it is a reply. how?
-            comments.forEach(comm => {
-                if (comm.replies.length > 0) {
-                    // Check if the id matches any of these replies.
-                    const reply = comm.replies.find(rep => rep.id == replyToDeleteId);
-
-                    if (reply) {
-                        const updateReps = comm.replies.filter(rep => rep.id !== replyToDeleteId);
-                        comm.replies = updateReps;
-                    }
-                }
-            });
-
-            setReplyToDeleteId(null);
-            setIsOpenModal(false);
-        }
-    }
-
     return (
         <main className='home'>
             <div className='container'>
                 <Comments
                     comments={comments}
                     currentUser={currentUser}
-                    deleteComment={deleteComment}
                     setIsOpenModal={setIsOpenModal}
                     setCommentToDeleteId={setCommentToDeleteId}
                     setReplyToDeleteId={setReplyToDeleteId}
+                    setCommToEditId={setCommToEditId}
                 />
                 <AddComment currentUser={currentUser} addComment={addComment} />
             </div>
@@ -68,8 +49,12 @@ const Home = () => {
                 setIsOpenModal={setIsOpenModal}
                 setCommentToDeleteId={setCommentToDeleteId}
                 setReplyToDeleteId={setReplyToDeleteId}
-                deleteComment={deleteComment}
+                commentToDeleteId={commToEditId}
+                replyToDeleteId={replyToDeleteId}
             />)}
+            {/* <EditCommentModal
+                commToEditId={commToEditId}
+            /> */}
         </main>
     )
 }

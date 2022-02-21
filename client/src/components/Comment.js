@@ -10,10 +10,9 @@ const Comment = (props) => {
         vote,
         user,
         currentUser,
-        deleteComment,
         setIsOpenModal,
         setCommentToDeleteId,
-        setReplyToDeleteId
+        setReplyToDeleteId,
     } = props;
 
     return (
@@ -29,7 +28,6 @@ const Comment = (props) => {
             <UserActions
                 currentUser={currentUser}
                 user={user}
-                deleteComment={deleteComment}
                 id={id}
                 setIsOpenModal={setIsOpenModal}
                 setCommentToDeleteId={setCommentToDeleteId}

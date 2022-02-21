@@ -1,16 +1,15 @@
 import React from 'react';
 import Comment from './Comment';
 import CommentsWithReplies from './CommentsWithReplies';
-import EditCommentModal from './EditCommentModal';
 
 const Comments = (props) => {
     const {
         comments,
         currentUser,
-        deleteComment,
         setIsOpenModal,
         setCommentToDeleteId,
-        setReplyToDeleteId
+        setReplyToDeleteId,
+        setCommToEditId
     } = props;
 
     return (
@@ -39,13 +38,12 @@ const Comments = (props) => {
                         vote={comment.score}
                         user={comment.user}
                         currentUser={currentUser}
-                        deleteComment={deleteComment}
                         setIsOpenModal={setIsOpenModal}
                         setCommentToDeleteId={setCommentToDeleteId}
+                        setCommToEditId={setCommToEditId}
                     />)
                 }
             })}
-            {/* <EditCommentModal /> */}
         </div>
     )
 }
