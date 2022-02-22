@@ -13,7 +13,8 @@ const Comment = (props) => {
         setIsOpenModal,
         setCommentToDeleteId,
         setReplyToDeleteId,
-        setIsEditModalOpen
+        setIsEditModalOpen,
+        setCommentToEditId
     } = props;
 
     return (
@@ -34,6 +35,7 @@ const Comment = (props) => {
                 setCommentToDeleteId={setCommentToDeleteId}
                 setReplyToDeleteId={setReplyToDeleteId}
                 setIsEditModalOpen={setIsEditModalOpen}
+                setCommentToEditId={setCommentToEditId}
             />
         </div>
     )

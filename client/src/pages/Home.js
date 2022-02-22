@@ -12,6 +12,8 @@ const Home = () => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [commentToDeleteId, setCommentToDeleteId] = useState(null);
     const [replyToDeleteId, setReplyToDeleteId] = useState(null);
+    const [commentToEditId, setCommentToEditId] = useState(null);
+    const [replyToEdit, setReplyToEdit] = useState(null);
 
     useEffect(() => {
         setCommentsData(data);
@@ -25,6 +27,7 @@ const Home = () => {
                     setIsEditModalOpen={setIsEditModalOpen}
                     setCommentToDeleteId={setCommentToDeleteId}
                     setReplyToDeleteId={setReplyToDeleteId}
+                    setCommentToEditId={setCommentToEditId}
                 />
                 <AddComment commentsData={commentsData} setCommentsData={setCommentsData} />
             </div>
@@ -37,6 +40,7 @@ const Home = () => {
             />)}
             {isEditModalOpen && (<EditCommentModal
                 setIsEditModalOpen={setIsEditModalOpen}
+                commentToEditId={commentToEditId}
             />)}
         </main>
     )
