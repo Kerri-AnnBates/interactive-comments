@@ -9,6 +9,7 @@ import CommentsContext from '../contexts/CommentsContext';
 const Home = () => {
     const [commentsData, setCommentsData] = useContext(CommentsContext);
     const [isModalOpen, setIsOpenModal] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [commentToDeleteId, setCommentToDeleteId] = useState(null);
     const [replyToDeleteId, setReplyToDeleteId] = useState(null);
 
@@ -21,6 +22,7 @@ const Home = () => {
             <div className='container'>
                 <Comments
                     setIsOpenModal={setIsOpenModal}
+                    setIsEditModalOpen={setIsEditModalOpen}
                     setCommentToDeleteId={setCommentToDeleteId}
                     setReplyToDeleteId={setReplyToDeleteId}
                 />
@@ -33,9 +35,9 @@ const Home = () => {
                 commentToDeleteId={commentToDeleteId}
                 replyToDeleteId={replyToDeleteId}
             />)}
-            {/* <EditCommentModal
-                commToEditId={commToEditId}
-            /> */}
+            {isEditModalOpen && (<EditCommentModal
+                setIsEditModalOpen={setIsEditModalOpen}
+            />)}
         </main>
     )
 }
