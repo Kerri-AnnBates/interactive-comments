@@ -5,8 +5,6 @@ const DeleteModal = (props) => {
     const { setIsOpenModal, setCommentToDeleteId, setReplyToDeleteId, commentToDeleteId, replyToDeleteId } = props;
     const [commentsData, setCommentsData] = useContext(CommentsContext);
 
-    console.log(commentsData);
-
     const deleteComment = () => {
         if (commentToDeleteId) {
             const updatedComments = commentsData.comments.filter(comment => comment.id !== commentToDeleteId);
