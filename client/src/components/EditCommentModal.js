@@ -32,12 +32,13 @@ const EditCommentModal = ({ setIsEditModalOpen, commentToEditId, replyToEditId, 
 
     const editContent = (e) => {
         e.preventDefault();
+        let currComments;
 
         if (!replyToEditId) {
             let commentFound = commentsData.comments.find(comment => comment.id === commentToEditId);
             commentFound = { ...commentFound, content: input }
 
-            const currComments = commentsData.comments.map(currComm => {
+            currComments = commentsData.comments.map(currComm => {
                 if (currComm.id === commentToEditId) {
                     Object.assign(currComm, commentFound);
                 }
@@ -45,16 +46,31 @@ const EditCommentModal = ({ setIsEditModalOpen, commentToEditId, replyToEditId, 
                 return currComm;
             });
 
-            setCommentsData({ ...commentsData, comments: currComments });
         } else {
-            let commentWithReply = commentsData.comments.find(comment => comment.id === replyToEditId.parentId);
-            let tempReplies;
+            let commentWithReply = commentsData.comments.find(comment => comment.id === commentToEditId);
+            let reply = commentWithReply.replies.find(rep => rep.id === replyToEditId);
+            const updatedReply = { ...reply, content: input }
 
-            // Get the parent comment
-            // Find the reply by id
+            // Replace old reply with new reply
+            const replies = commentWithReply.replies.map(rep => {
+                if (rep.id === replyToEditId) {
+                    Object.assign(rep, updatedReply);
+                }
+
+                return rep;
+            });
+
+            currComments = commentsData.comments.map(currComm => {
+                if (currComm.id === commentToEditId) {
+                    Object.assign(currComm, commentWithReply);
+                }
+
+                return currComm;
+            });
         }
 
-        setIsEditModalOpen(false);
+        setCommentsData({ ...commentsData, comments: currComments });
+        handleCancel();
     }
 
     const handleCommentChange = (e) => {
