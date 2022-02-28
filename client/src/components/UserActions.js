@@ -8,11 +8,13 @@ const UserActions = (props) => {
     const { currentUser,
         user,
         id,
+        parentId,
         setIsOpenModal,
         setCommentToDeleteId,
         setReplyToDeleteId,
         setIsEditModalOpen,
-        setCommentToEditId
+        setCommentToEditId,
+        setReplyToEditId
     } = props;
 
     const handleDelete = () => {
@@ -28,10 +30,11 @@ const UserActions = (props) => {
     const handleEdit = () => {
         setIsEditModalOpen(true);
 
-        if (setCommentToEditId) {
+        if (!parentId) {
             setCommentToEditId(id);
         } else {
-
+            setCommentToEditId(parentId);
+            setReplyToEditId(id);
         }
     }
 

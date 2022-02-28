@@ -10,11 +10,13 @@ const Comment = (props) => {
         vote,
         user,
         currentUser,
+        parentId,
         setIsOpenModal,
         setCommentToDeleteId,
         setReplyToDeleteId,
         setIsEditModalOpen,
-        setCommentToEditId
+        setCommentToEditId,
+        setReplyToEditId,
     } = props;
 
     return (
@@ -31,11 +33,13 @@ const Comment = (props) => {
                 currentUser={currentUser}
                 user={user}
                 id={id}
+                parentId={parentId}
                 setIsOpenModal={setIsOpenModal}
                 setCommentToDeleteId={setCommentToDeleteId}
                 setReplyToDeleteId={setReplyToDeleteId}
                 setIsEditModalOpen={setIsEditModalOpen}
                 setCommentToEditId={setCommentToEditId}
+                setReplyToEditId={setReplyToEditId}
             />
         </div>
     )

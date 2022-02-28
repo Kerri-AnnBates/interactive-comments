@@ -10,6 +10,7 @@ const Comments = (props) => {
         setReplyToDeleteId,
         setIsEditModalOpen,
         setCommentToEditId,
+        setReplyToEditId,
     } = props;
 
     const [commentsData, setCommentsData] = useContext(CommentsContext);
@@ -34,6 +35,8 @@ const Comments = (props) => {
                             setCommentToDeleteId={setCommentToDeleteId}
                             setReplyToDeleteId={setReplyToDeleteId}
                             setIsEditModalOpen={setIsEditModalOpen}
+                            setReplyToEditId={setReplyToEditId}
+                            setCommentToEditId={setCommentToEditId}
                         />)
                     } else {
                         return (<Comment

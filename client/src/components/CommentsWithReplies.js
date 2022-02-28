@@ -12,7 +12,9 @@ const CommentsWithReplies = (props) => {
         setIsOpenModal,
         setCommentToDeleteId,
         setReplyToDeleteId,
-        setIsEditModalOpen
+        setIsEditModalOpen,
+        setReplyToEditId,
+        setCommentToEditId
     } = props;
 
     return (
@@ -40,9 +42,12 @@ const CommentsWithReplies = (props) => {
                         replyingTo={reply.replyingTo}
                         key={reply.id}
                         currentUser={currentUser}
+                        parentId={reply.parentId}
                         setIsOpenModal={setIsOpenModal}
                         setReplyToDeleteId={setReplyToDeleteId}
                         setIsEditModalOpen={setIsEditModalOpen}
+                        setReplyToEditId={setReplyToEditId}
+                        setCommentToEditId={setCommentToEditId}
                     />))}
             </div>
         </>
