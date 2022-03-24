@@ -25,8 +25,7 @@ const DeleteModal = (props) => {
                 }
             });
 
-            setReplyToDeleteId(null);
-            setIsOpenModal(false);
+            handleCancel();
         }
     }
 
