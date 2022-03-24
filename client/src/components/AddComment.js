@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import CommentsContext from '../contexts/CommentsContext';
 
-const AddComment = ({ commentsData, setCommentsData }) => {
+const AddComment = () => {
     const [userCommentValue, setUserCommentValue] = useState('');
+    const [commentsData, setCommentsData] = useContext(CommentsContext);
 
     const addComment = (newComment) => {
         const comment = {

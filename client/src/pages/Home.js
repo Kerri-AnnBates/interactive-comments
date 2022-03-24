@@ -30,7 +30,7 @@ const Home = () => {
                     setCommentToEditId={setCommentToEditId}
                     setReplyToEditId={setReplyToEditId}
                 />
-                <AddComment commentsData={commentsData} setCommentsData={setCommentsData} />
+                <AddComment />
             </div>
             {isModalOpen && (<DeleteModal
                 setIsOpenModal={setIsOpenModal}
