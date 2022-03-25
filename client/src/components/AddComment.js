@@ -1,21 +1,41 @@
 import React, { useState, useContext } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
 
-const AddComment = () => {
+const AddComment = (props) => {
+    const { user, parentId, isReply, setIsReply, setShowReplyBox } = props;
+
     const [userCommentValue, setUserCommentValue] = useState('');
     const [commentsData, setCommentsData] = useContext(CommentsContext);
 
     const addComment = (newComment) => {
-        const comment = {
-            ...newComment,
-            id: commentsData.comments.length + 1,
-            user: commentsData.currentUser
-        }
 
-        setCommentsData({
-            ...commentsData,
-            comments: [...commentsData.comments, comment]
-        });
+        if (isReply) {
+            const parentComment = commentsData.comments.find((comm) => comm.id === parentId);
+            const newReplies = [...parentComment.replies, newComment];
+
+            // replace replies
+            parentComment.replies = newReplies;
+
+            // replace parent comment in comments list
+            const newComments = commentsData.comments.map(currComm => {
+                if (currComm.id === parentId) {
+                    Object.assign(currComm, parentComment);
+                }
+
+                return currComm;
+            });
+
+            setCommentsData({
+                ...commentsData,
+                comments: newComments
+            });
+
+        } else {
+            setCommentsData({
+                ...commentsData,
+                comments: [...commentsData.comments, newComment]
+            });
+        }
     }
 
     const handleCommentChange = (e) => {
@@ -31,16 +51,35 @@ const AddComment = () => {
             return;
         }
 
+        let comment = {};
 
-        const newComment = {
-            createdAt: 'Today',
-            content: userCommentValue,
-            replies: [],
-            score: 0
+        if (isReply) {
+            const targetComment = commentsData.comments.find((comm) => comm.id === parentId);
+
+            comment = {
+                content: userCommentValue,
+                createdAt: "Today",
+                id: targetComment.replies.length + 1,
+                parentId: parentId,
+                replyingTo: user.username,
+                score: 0,
+                user: commentsData.currentUser
+            };
+        } else {
+            comment = {
+                createdAt: 'Today',
+                content: userCommentValue,
+                id: commentsData.comments.length + 1,
+                user: commentsData.currentUser,
+                replies: [],
+                score: 0
+            };
         }
 
-        addComment(newComment);
+        addComment(comment);
         setUserCommentValue('');
+        setIsReply(false);
+        setShowReplyBox(false);
     }
 
     return (

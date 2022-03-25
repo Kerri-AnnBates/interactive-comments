@@ -21,6 +21,7 @@ const CommentsWithReplies = (props) => {
         <>
             <Comment
                 id={id}
+                parentId={id}
                 content={content}
                 createdAt={createdAt}
                 vote={vote}

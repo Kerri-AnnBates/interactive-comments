@@ -14,7 +14,11 @@ const UserActions = (props) => {
         setReplyToDeleteId,
         setIsEditModalOpen,
         setCommentToEditId,
-        setReplyToEditId
+        setReplyToEditId,
+        setShowReplyBox,
+        showReplyBox,
+        setIsReply,
+        isReply,
     } = props;
 
     const handleDelete = () => {
@@ -38,6 +42,11 @@ const UserActions = (props) => {
         }
     }
 
+    const handleReply = () => {
+        setShowReplyBox(!showReplyBox);
+        setIsReply(!isReply);
+    }
+
     return (
         <div className='user-actions'>
             {(currentUser.username === user.username) ?
@@ -45,7 +54,7 @@ const UserActions = (props) => {
                     <span onClick={handleEdit} ><img alt='edit icon' src={editIcon} /> Edit</span>
                     <span className='delete' onClick={handleDelete}><img alt='delete icon' src={deleteIcon} /> Delete</span>
                 </>) :
-                (<span><img alt='reply icon' src={replyIcon} /> Reply</span>)}
+                (<span onClick={handleReply}><img alt='reply icon' src={replyIcon} /> Reply</span>)}
         </div>
     )
 }

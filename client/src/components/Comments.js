@@ -41,6 +41,7 @@ const Comments = (props) => {
                     } else {
                         return (<Comment
                             id={comment.id}
+                            parentId={comment.id}
                             content={comment.content}
                             createdAt={comment.createdAt}
                             key={comment.id}
