@@ -16,6 +16,9 @@ const Home = () => {
     const [replyToEditId, setReplyToEditId] = useState(null);
 
     useEffect(() => {
+        // Sort by comment by score;
+        data.comments.sort((a, b) => b.score - a.score);
+
         setCommentsData(data);
     }, []);
 
