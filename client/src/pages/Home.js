@@ -16,7 +16,7 @@ const Home = () => {
     const [replyToEditId, setReplyToEditId] = useState(null);
 
     useEffect(() => {
-        // Sort by comment by score;
+        // TODO: Fix sorting, it's off by 1 when dynamically changing?
         data.comments.sort((a, b) => b.score - a.score);
 
         setCommentsData(data);

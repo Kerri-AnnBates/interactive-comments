@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Vote = ({ vote }) => {
+const Vote = ({ vote, updateVotes, id, parentId }) => {
     const [voteCount, setVoteCount] = useState(vote);
+
+    useEffect(() => {
+        if (updateVotes) {
+            if (parentId) {
+                updateVotes(id, voteCount, parentId);
+            } else {
+                updateVotes(id, voteCount);
+            }
+        }
+    }, [voteCount]);
 
     const handleVoteCount = (e) => {
         const aciton = e.target.dataset.value;

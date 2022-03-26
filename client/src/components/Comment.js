@@ -18,6 +18,8 @@ const Comment = (props) => {
         setIsEditModalOpen,
         setCommentToEditId,
         setReplyToEditId,
+        setCommentsData,
+        updateVotes,
     } = props;
 
     const [showReplyBox, setShowReplyBox] = useState(false);
@@ -33,7 +35,7 @@ const Comment = (props) => {
                     </div>
                 </div>
 
-                <Vote vote={vote} />
+                <Vote vote={vote} updateVotes={updateVotes} id={id} parentId={parentId} />
                 <UserActions
                     currentUser={currentUser}
                     user={user}
