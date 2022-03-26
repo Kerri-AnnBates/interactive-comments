@@ -42,7 +42,7 @@ const CommentsWithReplies = (props) => {
                         vote={reply.score}
                         user={reply.user}
                         replyingTo={reply.replyingTo}
-                        key={reply.id}
+                        key={`reply-${reply.id}`}
                         currentUser={currentUser}
                         parentId={reply.parentId}
                         setIsOpenModal={setIsOpenModal}

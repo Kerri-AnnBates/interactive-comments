@@ -55,6 +55,7 @@ const Comment = (props) => {
             </div>
             {showReplyBox &&
                 <AddComment
+                    id={id}
                     user={user}
                     parentId={parentId}
                     isReply={isReply}

@@ -2,15 +2,19 @@ import React, { useState, useContext } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
 
 const AddComment = (props) => {
-    const { user, parentId, isReply, setIsReply, setShowReplyBox } = props;
+    const { id, user, parentId, isReply, setIsReply, setShowReplyBox } = props;
 
     const [userCommentValue, setUserCommentValue] = useState('');
     const [commentsData, setCommentsData] = useContext(CommentsContext);
 
-    const addComment = (newComment) => {
+    const handleAddingComment = (newComment) => {
+        console.log("new comment:", newComment);
+        console.log("is reply:", isReply);
 
         if (isReply) {
-            const parentComment = commentsData.comments.find((comm) => comm.id === parentId);
+            const targetId = parentId ? parentId : id;
+
+            const parentComment = commentsData.comments.find((comm) => comm.id === targetId);
             const newReplies = [...parentComment.replies, newComment];
 
             // replace replies
@@ -54,16 +58,18 @@ const AddComment = (props) => {
         let comment = {};
 
         if (isReply) {
-            const targetComment = commentsData.comments.find((comm) => comm.id === parentId);
+            const targetId = parentId ? parentId : id;
+
+            const targetComment = commentsData.comments.find((comm) => comm.id === targetId);
 
             comment = {
                 content: userCommentValue,
                 createdAt: "Today",
                 id: targetComment.replies.length + 1,
-                parentId: parentId,
+                parentId: targetId,
                 replyingTo: user.username,
                 score: 0,
-                user: commentsData.currentUser
+                user: commentsData.currentUser,
             };
         } else {
             comment = {
@@ -76,7 +82,7 @@ const AddComment = (props) => {
             };
         }
 
-        addComment(comment);
+        handleAddingComment(comment);
         setUserCommentValue('');
         setIsReply(false);
         setShowReplyBox(false);
