@@ -11,12 +11,18 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
+    padding: 20px;
 }
 .modal-container {
-    width: 30%;
+    max-width: 500px;
+    width: 100%;
     background-color: $white;
     padding: 30px;
     border-radius: 10px;
+
+    @media screen and (min-width: 500px) {
+        
+    }
 }
 
 .modal-actions {

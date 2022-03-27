@@ -22,6 +22,7 @@ p {
 h1,h2,h3,h4,h5,h6 {
     color: $darkBlue;
     margin: 0;
+    margin-bottom: 10px;
 }
 
 .container {
@@ -37,10 +38,14 @@ img {
 
 button {
     display: inline-block;
-    padding: 10px 25px;
+    padding: 10px 15px;
     border-radius: 8px;
     border: none;
     color: $white;
+    
+    @media screen and (min-width: 400px) {
+        padding: 10px 25px;
+    }
 }
 
 button:hover {
@@ -50,9 +55,14 @@ button:hover {
 
 // Replies
 .replies {
-    margin-left: 40px;
-    padding-left: 40px;
+    margin-left: 20px;
+    padding-left: 20px;
     border-left: 3px solid $lightGrey;
+
+    @media screen and (min-width: 450px) {
+        margin-left: 40px;
+        padding-left: 40px;
+    }
 }
 
 .primary-btn {
@@ -84,6 +94,8 @@ textarea {
     border-radius: 10px;
     border: 1px solid $lightGrey;
     caret-color: $moderateBlue;
+    line-height: 1.15rem;
+    margin: 10px 0;
 
     &:focus {
         outline: none;

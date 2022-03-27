@@ -86,10 +86,13 @@ const EditCommentModal = ({ setIsEditModalOpen, commentToEditId, replyToEditId, 
     return (
         <div className='modal'>
             <div className='modal-container'>
+                <h3 className='modal-header'>Edit comment</h3>
                 <form onSubmit={editContent}>
                     <textarea name='edit' className='edit-comment' value={input} onChange={handleCommentChange}></textarea>
-                    <button className='secondary-btn' onClick={handleCancel}>No, cancel</button>
-                    <button className='danger-btn'>Update</button>
+                    <div className='modal-actions'>
+                        <button className='secondary-btn' onClick={handleCancel}>No, cancel</button>
+                        <button className='danger-btn'>Update</button>
+                    </div>
                 </form>
             </div>
         </div>
