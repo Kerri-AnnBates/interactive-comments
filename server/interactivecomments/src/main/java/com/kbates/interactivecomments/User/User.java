@@ -16,7 +16,7 @@ public class User {
 
     public User() {}
 
-    public User(long userId, String username, String image) {
+    public User(String username, String image) {
         this.userId = userId;
         this.username = username;
         this.image = image;
@@ -24,10 +24,6 @@ public class User {
 
     public long getUserId() {
         return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
     }
 
     public String getUsername() {
