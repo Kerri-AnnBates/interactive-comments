@@ -1,9 +1,9 @@
 package com.kbates.interactivecomments.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.kbates.interactivecomments.Comment.Comment;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -14,12 +14,15 @@ public class User {
     private String username;
     private String image;
 
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
     public User() {}
 
-    public User(String username, String image) {
-        this.userId = userId;
+    public User(String username, String image, List<Comment> comments) {
         this.username = username;
         this.image = image;
+        this.comments = comments;
     }
 
     public long getUserId() {
@@ -40,5 +43,13 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
