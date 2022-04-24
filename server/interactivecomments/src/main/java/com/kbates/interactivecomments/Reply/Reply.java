@@ -1,42 +1,44 @@
-package com.kbates.interactivecomments.Comment;
+package com.kbates.interactivecomments.Reply;
 
-import com.kbates.interactivecomments.Reply.Reply;
+import com.kbates.interactivecomments.Comment.Comment;
 import com.kbates.interactivecomments.User.User;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-public class Comment {
+public class Reply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long commentId;
+    private long replyId;
     private String content;
     private Date createdAt;
     private Integer score;
+    private String replyingTo;
+
+    @ManyToOne
+    @JoinColumn(name = "commentId")
+    private Comment comment;
 
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany(mappedBy = "comment")
-    private List<Reply> replies;
-
-    public Comment() {
+    public Reply() {
     }
 
-    public Comment(String content, Date createdAt, Integer score, User user, List<Reply> replies) {
+    public Reply(String content, Date createdAt, Integer score, String replyingTo, Comment comment, User user) {
         this.content = content;
         this.createdAt = createdAt;
         this.score = score;
+        this.replyingTo = replyingTo;
+        this.comment = comment;
         this.user = user;
-        this.replies = replies;
     }
 
-    public long getCommentId() {
-        return commentId;
+    public long getReplyId() {
+        return replyId;
     }
 
     public String getContent() {
@@ -63,19 +65,27 @@ public class Comment {
         this.score = score;
     }
 
+    public String getReplyingTo() {
+        return replyingTo;
+    }
+
+    public void setReplyingTo(String replyingTo) {
+        this.replyingTo = replyingTo;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Reply> getReplies() {
-        return replies;
-    }
-
-    public void setReplies(List<Reply> replies) {
-        this.replies = replies;
     }
 }

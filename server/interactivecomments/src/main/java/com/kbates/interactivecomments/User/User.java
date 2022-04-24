@@ -1,6 +1,7 @@
 package com.kbates.interactivecomments.User;
 
 import com.kbates.interactivecomments.Comment.Comment;
+import com.kbates.interactivecomments.Reply.Reply;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,12 +18,16 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 
+    @OneToMany(mappedBy = "user")
+    private List<Reply> replies;
+
     public User() {}
 
-    public User(String username, String image, List<Comment> comments) {
+    public User(String username, String image, List<Comment> comments, List<Reply> replies) {
         this.username = username;
         this.image = image;
         this.comments = comments;
+        this.replies = replies;
     }
 
     public long getUserId() {
@@ -51,5 +56,13 @@ public class User {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
     }
 }
