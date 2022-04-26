@@ -1,7 +1,7 @@
-package com.kbates.interactivecomments.Comment;
+package com.kbates.interactivecomments.comment;
 
-import com.kbates.interactivecomments.Reply.Reply;
-import com.kbates.interactivecomments.User.User;
+import com.kbates.interactivecomments.reply.Reply;
+import com.kbates.interactivecomments.user.User;
 
 import javax.persistence.*;
 import java.util.Date;
