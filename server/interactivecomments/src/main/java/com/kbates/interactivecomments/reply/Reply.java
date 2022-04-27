@@ -10,7 +10,7 @@ import java.util.Date;
 public class Reply {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long replyId;
     private String content;
     private Date createdAt;

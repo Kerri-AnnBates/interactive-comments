@@ -7,10 +7,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "useraccount")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long userId;
     private String username;
     private String image;

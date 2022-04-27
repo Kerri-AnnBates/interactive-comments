@@ -1,4 +1,4 @@
-package com.kbates.interactivecomments.User;
+package com.kbates.interactivecomments.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
