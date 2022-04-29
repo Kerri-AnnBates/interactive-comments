@@ -12,7 +12,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long userId;
+    private Long userId;
     private String username;
     private String image;
 
@@ -31,7 +31,7 @@ public class User {
         this.replies = replies;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 

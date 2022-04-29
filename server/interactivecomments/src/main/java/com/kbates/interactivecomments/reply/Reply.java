@@ -11,7 +11,7 @@ public class Reply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long replyId;
+    private Long replyId;
     private String content;
     private Date createdAt;
     private Integer score;
@@ -37,7 +37,7 @@ public class Reply {
         this.user = user;
     }
 
-    public long getReplyId() {
+    public Long getReplyId() {
         return replyId;
     }
 
