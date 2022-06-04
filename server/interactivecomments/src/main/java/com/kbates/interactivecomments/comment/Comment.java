@@ -4,7 +4,7 @@ import com.kbates.interactivecomments.reply.Reply;
 import com.kbates.interactivecomments.user.User;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -14,7 +14,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long commentId;
     private String content;
-    private Date createdAt;
+    private LocalDate createdAt;
     private Integer score;
 
     @ManyToOne
@@ -27,7 +27,7 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String content, Date createdAt, Integer score, User user, List<Reply> replies) {
+    public Comment(String content, LocalDate createdAt, Integer score, User user, List<Reply> replies) {
         this.content = content;
         this.createdAt = createdAt;
         this.score = score;
@@ -47,11 +47,11 @@ public class Comment {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 

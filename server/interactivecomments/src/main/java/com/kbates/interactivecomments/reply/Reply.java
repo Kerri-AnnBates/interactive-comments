@@ -2,9 +2,10 @@ package com.kbates.interactivecomments.reply;
 
 import com.kbates.interactivecomments.comment.Comment;
 import com.kbates.interactivecomments.user.User;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Reply {
@@ -13,7 +14,7 @@ public class Reply {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long replyId;
     private String content;
-    private Date createdAt;
+    private LocalDate createdAt;
     private Integer score;
     private String replyingTo;
 
@@ -28,7 +29,7 @@ public class Reply {
     public Reply() {
     }
 
-    public Reply(String content, Date createdAt, Integer score, String replyingTo, Comment comment, User user) {
+    public Reply(String content, LocalDate createdAt, Integer score, String replyingTo, Comment comment, User user) {
         this.content = content;
         this.createdAt = createdAt;
         this.score = score;
@@ -49,11 +50,11 @@ public class Reply {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
