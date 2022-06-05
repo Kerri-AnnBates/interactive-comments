@@ -1,9 +1,11 @@
 package com.kbates.interactivecomments.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kbates.interactivecomments.comment.Comment;
 import com.kbates.interactivecomments.reply.Reply;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,10 +19,12 @@ public class User {
     private String image;
 
     @OneToMany(mappedBy = "user")
-    private List<Comment> comments;
+    @JsonIgnoreProperties(value = "user", allowSetters = true)
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Reply> replies;
+    @JsonIgnoreProperties(value = "user", allowSetters = true)
+    private List<Reply> replies = new ArrayList<>();
 
     public User() {}
 
