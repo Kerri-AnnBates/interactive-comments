@@ -1,6 +1,7 @@
 package com.kbates.interactivecomments;
 
 import com.kbates.interactivecomments.comment.Comment;
+import com.kbates.interactivecomments.comment.CommentService;
 import com.kbates.interactivecomments.user.User;
 import com.kbates.interactivecomments.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,16 @@ public class SeedData implements CommandLineRunner {
     @Autowired
     UserService userService;
 
+    @Autowired
+    CommentService commentService;
+
     @Override
     public void run(String... args) throws Exception {
 
         // Get current date
         LocalDate today = LocalDate.now();
 
-        // Create current users
+        // Users
         User user1 = new User();
         User user2 = new User();
         User user3 = new User();
@@ -41,5 +45,13 @@ public class SeedData implements CommandLineRunner {
         user4.setUsername("ramsesmiron");
         user4.setImage("./images/avatars/image-ramsesmiron.png");
         userService.addUser(user4);
+
+        // Comments
+        Comment comment1 = new Comment();
+        comment1.setContent("Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.");
+        comment1.setCreatedAt(today.minusMonths(1));
+        comment1.setScore(12);
+        comment1.setUser(user2);
+        commentService.addComment(comment1);
     }
 }
