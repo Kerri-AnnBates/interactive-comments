@@ -53,5 +53,12 @@ public class SeedData implements CommandLineRunner {
         comment1.setScore(12);
         comment1.setUser(user2);
         commentService.addComment(comment1);
+
+        Comment comment2 = new Comment();
+        comment2.setContent("Woah, your project looks awesome! How long have you been coding for? I'm still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!");
+        comment2.setCreatedAt(today.minusWeeks(2));
+        comment2.setScore(5);
+        comment2.setUser(user3);
+        commentService.addComment(comment2);
     }
 }
