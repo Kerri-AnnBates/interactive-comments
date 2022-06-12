@@ -1,8 +1,8 @@
 package com.kbates.interactivecomments.reply;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kbates.interactivecomments.comment.Comment;
 import com.kbates.interactivecomments.user.User;
-import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,6 +20,7 @@ public class Reply {
 
     @ManyToOne
     @JoinColumn(name = "commentId")
+    @JsonIgnore
     private Comment comment;
 
     @ManyToOne

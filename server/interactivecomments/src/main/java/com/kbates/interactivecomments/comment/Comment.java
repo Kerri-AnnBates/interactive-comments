@@ -1,6 +1,5 @@
 package com.kbates.interactivecomments.comment;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kbates.interactivecomments.reply.Reply;
 import com.kbates.interactivecomments.user.User;
 
@@ -24,7 +23,6 @@ public class Comment {
     private User user;
 
     @OneToMany(mappedBy = "comment")
-    @JsonIgnoreProperties(value = "comment", allowSetters = true)
     private List<Reply> replies = new ArrayList<>();
 
     public Comment() {
