@@ -3,7 +3,9 @@ package com.kbates.interactivecomments.comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service(value = "commentService")
 public class CommentServiceImpl implements CommentService {
@@ -22,8 +24,15 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getCommentsById(Long id) {
-        return null;
+    public Comment getCommentById(Long id) {
+        Optional<Comment> commentOptional = commentRepository.findById(id);
+
+        if (!commentOptional.isPresent()) {
+            throw new EntityNotFoundException("Comment with id " + id + " not found!");
+        }
+
+        Comment comment = commentOptional.get();
+        return comment;
     }
 
     @Override
