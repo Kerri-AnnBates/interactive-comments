@@ -1,5 +1,6 @@
 package com.kbates.interactivecomments.comment;
 
+import com.kbates.interactivecomments.reply.Reply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,4 +40,38 @@ public class CommentServiceImpl implements CommentService {
     public Comment addNewComment(Comment comment) {
         return commentRepository.save(comment);
     }
+
+    @Override
+    public Comment updateCommentById(Long id, Comment comment) {
+        Optional<Comment> commentOptional = commentRepository.findById(id);
+
+        if(commentOptional.isEmpty()) {
+            throw new EntityNotFoundException("Comment by id: " + id + " not found!");
+        }
+
+        Comment commentToUpdate = commentOptional.get();
+
+        if (comment.getContent() != null) {
+            commentToUpdate.setContent(comment.getContent());
+        }
+
+        if (comment.getScore() != null) {
+            commentToUpdate.setScore(comment.getScore());
+        }
+        
+        if (comment.getCreatedAt() != null) {
+            commentToUpdate.setCreatedAt(comment.getCreatedAt());
+        }
+        
+        if (comment.getReplies().size() > 0) {
+
+//            for (Reply reply: comment.getReplies()) {
+//                commentToUpdate.getReplies().add(reply);
+//            }
+        }
+
+        return commentToUpdate;
+    }
+
+
 }
