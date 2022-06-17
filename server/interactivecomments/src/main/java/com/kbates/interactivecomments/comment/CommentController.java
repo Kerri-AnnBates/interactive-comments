@@ -20,14 +20,14 @@ public class CommentController {
 
     @GetMapping("/")
     public ResponseEntity<List<Comment>> getAllComments() {
-        List<Comment> commentsList = commentService.getAllComments();
+        List<Comment> commentsList = commentService.findAllComments();
 
         return new ResponseEntity<List<Comment>>(commentsList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Comment> getCommentById(@PathVariable Long id) {
-        Comment comment = commentService.getCommentById(id);
+        Comment comment = commentService.findCommentById(id);
 
         return new ResponseEntity<Comment>(comment, HttpStatus.OK);
     }

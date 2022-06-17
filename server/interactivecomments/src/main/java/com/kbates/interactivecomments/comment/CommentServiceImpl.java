@@ -17,14 +17,14 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getAllComments() {
+    public List<Comment> findAllComments() {
         List<Comment> listOfComments = commentRepository.findAll();
 
         return listOfComments;
     }
 
     @Override
-    public Comment getCommentById(Long id) {
+    public Comment findCommentById(Long id) {
         Optional<Comment> commentOptional = commentRepository.findById(id);
 
         if (!commentOptional.isPresent()) {
@@ -36,7 +36,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment addComment(Comment comment) {
+    public Comment addNewComment(Comment comment) {
         return commentRepository.save(comment);
     }
 }
