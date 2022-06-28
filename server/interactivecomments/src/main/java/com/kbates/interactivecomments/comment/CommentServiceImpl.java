@@ -72,5 +72,18 @@ public class CommentServiceImpl implements CommentService {
         return commentToUpdate;
     }
 
+    @Override
+    public void deleteCommentById(Long id) {
+        Optional<Comment> commOpt = commentRepository.findById(id);
+
+        if (commOpt.isEmpty()) {
+            throw new EntityNotFoundException("Comment not found by id " + id);
+        }
+
+        Comment commentToDelete = commOpt.get();
+
+        commentRepository.delete(commentToDelete);
+    }
+
 
 }
