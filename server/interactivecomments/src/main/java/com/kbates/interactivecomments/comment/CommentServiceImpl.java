@@ -69,7 +69,7 @@ public class CommentServiceImpl implements CommentService {
             }
         }
 
-        return commentToUpdate;
+        return commentRepository.save(commentToUpdate);
     }
 
     @Override
