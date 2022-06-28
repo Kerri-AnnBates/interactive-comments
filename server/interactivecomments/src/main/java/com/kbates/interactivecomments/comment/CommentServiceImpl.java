@@ -64,10 +64,9 @@ public class CommentServiceImpl implements CommentService {
         }
         
         if (comment.getReplies().size() > 0) {
-
-//            for (Reply reply: comment.getReplies()) {
-//                commentToUpdate.getReplies().add(reply);
-//            }
+            for (Reply reply: comment.getReplies()) {
+                commentToUpdate.getReplies().add(reply);
+            }
         }
 
         return commentToUpdate;
