@@ -1,6 +1,5 @@
 package com.kbates.interactivecomments.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -34,5 +33,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public User updateUser(Long id, User user) {
+        Optional<User> userOpt = userRepository.findById(id);
+
+        if (userOpt.isEmpty()) {
+            throw new EntityNotFoundException("User not found by id: " + id);
+        }
+
+        User userToUpdate = userOpt.get();
+
+        if (user.getUsername() != null) {
+            userToUpdate.setUsername(user.getUsername());
+        }
+
+        if (user.getImage() != null) {
+            userToUpdate.setImage(user.getImage());
+        }
+
+        return userRepository.save(userToUpdate);
     }
 }

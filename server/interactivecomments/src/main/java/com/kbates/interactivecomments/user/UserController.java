@@ -1,9 +1,9 @@
 package com.kbates.interactivecomments.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,10 +29,22 @@ public class UserController {
 
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
+
     @PostMapping(value = "/")
     ResponseEntity<User> addUser(@RequestBody User newUser) {
         User addedUser = userService.addUser(newUser);
 
         return new ResponseEntity<User>(addedUser, HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/{id}")
+    ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+        if (user.getComments() != null || user.getReplies() != null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot update comments or replies");
+        }
+
+        User updatedUser = userService.updateUser(id, user);
+
+        return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
     }
 }
