@@ -39,7 +39,7 @@ public class ReplyController {
     public ResponseEntity<Reply> deleteReplyById(@PathVariable Long id) {
         replyService.deleteReplyById(id);
 
-        return new ResponseEntity<Reply>(HttpStatus.OK);
+        return new ResponseEntity("Reply Deleted", HttpStatus.OK);
     }
 
 }
