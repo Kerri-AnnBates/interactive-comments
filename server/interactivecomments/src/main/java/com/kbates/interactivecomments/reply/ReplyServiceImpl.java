@@ -1,16 +1,21 @@
 package com.kbates.interactivecomments.reply;
 
+import com.kbates.interactivecomments.comment.Comment;
+import com.kbates.interactivecomments.comment.CommentRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Service(value = "replyService")
 public class ReplyServiceImpl implements ReplyService {
     private final ReplyRepository replyRepository;
+    private final CommentRepository commentRepository;
 
-    public ReplyServiceImpl(ReplyRepository replyRepository) {
+    public ReplyServiceImpl(ReplyRepository replyRepository, CommentRepository commentRepository) {
         this.replyRepository = replyRepository;
+        this.commentRepository = commentRepository;
     }
 
     @Override
@@ -30,6 +35,14 @@ public class ReplyServiceImpl implements ReplyService {
 
         return reply;
     }
+
+    @Override
+    public List<Reply> getAllRepliesForComment(Long id) {
+        Comment comment = commentRepository.getById(id);
+
+        return replyRepository.findByComment(comment);
+    }
+
 
     @Override
     public Reply updateReplyById(Long id, Reply replyUpdates) {
