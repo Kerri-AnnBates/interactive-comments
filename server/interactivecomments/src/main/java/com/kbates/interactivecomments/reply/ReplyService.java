@@ -1,8 +1,5 @@
 package com.kbates.interactivecomments.reply;
 
-import com.kbates.interactivecomments.comment.Comment;
-import com.kbates.interactivecomments.user.User;
-
 import java.util.List;
 
 public interface ReplyService {
