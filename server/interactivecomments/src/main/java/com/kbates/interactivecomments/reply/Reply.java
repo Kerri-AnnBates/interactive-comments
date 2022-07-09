@@ -16,10 +16,12 @@ public class Reply {
     private String content;
     private LocalDate createdAt;
     private Integer score;
+
+    @Column(updatable = false)
     private String replyingTo;
 
     @ManyToOne
-    @JoinColumn(name = "commentId")
+    @JoinColumn(name = "commentId", updatable = false)
     @JsonIgnore
     private Comment comment;
 
