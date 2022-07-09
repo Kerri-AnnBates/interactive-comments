@@ -1,10 +1,9 @@
 package com.kbates.interactivecomments.comment;
 
+import com.kbates.interactivecomments.exception.comment.CommentNotFoundException;
 import com.kbates.interactivecomments.reply.Reply;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +28,7 @@ public class CommentServiceImpl implements CommentService {
         Optional<Comment> commentOptional = commentRepository.findById(id);
 
         if (!commentOptional.isPresent()) {
-            throw new EntityNotFoundException("Comment with id " + id + " not found!");
+            throw new CommentNotFoundException(id);
         }
 
         Comment comment = commentOptional.get();
@@ -43,13 +42,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Comment updateCommentById(Long id, Comment comment) {
-        Optional<Comment> commentOptional = commentRepository.findById(id);
-
-        if(commentOptional.isEmpty()) {
-            throw new EntityNotFoundException("Comment by id: " + id + " not found!");
-        }
-
-        Comment commentToUpdate = commentOptional.get();
+        Comment commentToUpdate = this.findCommentById(id);
 
         if (comment.getContent() != null) {
             commentToUpdate.setContent(comment.getContent());
@@ -74,13 +67,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteCommentById(Long id) {
-        Optional<Comment> commOpt = commentRepository.findById(id);
-
-        if (commOpt.isEmpty()) {
-            throw new EntityNotFoundException("Comment not found by id " + id);
-        }
-
-        Comment commentToDelete = commOpt.get();
+        Comment commentToDelete = this.findCommentById(id);
 
         commentRepository.delete(commentToDelete);
     }
