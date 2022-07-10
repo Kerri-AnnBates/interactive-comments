@@ -1,6 +1,6 @@
 package com.kbates.interactivecomments.reply;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kbates.interactivecomments.comment.Comment;
 import com.kbates.interactivecomments.user.User;
 
@@ -21,8 +21,8 @@ public class Reply {
     private String replyingTo;
 
     @ManyToOne
-    @JoinColumn(name = "commentId", updatable = false)
-    @JsonIgnore
+    @JoinColumn(name = "commentId")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Comment comment;
 
     @ManyToOne

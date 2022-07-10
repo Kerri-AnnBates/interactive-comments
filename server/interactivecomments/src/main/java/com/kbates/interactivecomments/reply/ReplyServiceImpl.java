@@ -2,6 +2,7 @@ package com.kbates.interactivecomments.reply;
 
 import com.kbates.interactivecomments.comment.Comment;
 import com.kbates.interactivecomments.comment.CommentRepository;
+import com.kbates.interactivecomments.exception.comment.CommentNotFoundException;
 import com.kbates.interactivecomments.exception.reply.ReplyNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -38,9 +39,13 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public List<Reply> getAllRepliesForComment(Long id) {
-        Comment comment = commentRepository.getById(id);
+        Optional<Comment> comment = commentRepository.findById(id);
 
-        return replyRepository.findByComment(comment);
+        if (comment.isEmpty()) {
+            throw new CommentNotFoundException(id);
+        }
+
+        return replyRepository.findByComment(comment.get());
     }
 
 
