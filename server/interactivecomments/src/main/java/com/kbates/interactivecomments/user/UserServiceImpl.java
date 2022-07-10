@@ -1,8 +1,8 @@
 package com.kbates.interactivecomments.user;
 
+import com.kbates.interactivecomments.exception.user.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +23,11 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Long id) {
         Optional<User> userOpt = userRepository.findById(id);
 
-        if(userOpt.isPresent()) {
-            return userOpt.get();
-        } else {
-            throw new EntityNotFoundException("User by id " + id + " not found!");
+        if (userOpt.isEmpty()) {
+            throw new UserNotFoundException(id);
         }
+
+        return userOpt.get();
     }
 
     @Override
@@ -37,13 +37,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(Long id, User user) {
-        Optional<User> userOpt = userRepository.findById(id);
 
-        if (userOpt.isEmpty()) {
-            throw new EntityNotFoundException("User not found by id: " + id);
-        }
-
-        User userToUpdate = userOpt.get();
+        User userToUpdate = this.getUserById(id);
 
         if (user.getUsername() != null) {
             userToUpdate.setUsername(user.getUsername());
@@ -58,15 +53,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
-        Optional<User> userOpt = userRepository.findById(id);
-
-        if (userOpt.isEmpty()) {
-            throw new EntityNotFoundException("User not found by id: " + id);
-        }
-
-        User userToDelete = userOpt.get();
+        User userToDelete = this.getUserById(id);
 
         userRepository.delete(userToDelete);
     }
-
 }

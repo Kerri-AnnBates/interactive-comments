@@ -2,9 +2,9 @@ package com.kbates.interactivecomments.reply;
 
 import com.kbates.interactivecomments.comment.Comment;
 import com.kbates.interactivecomments.comment.CommentRepository;
+import com.kbates.interactivecomments.exception.reply.ReplyNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ public class ReplyServiceImpl implements ReplyService {
         Optional<Reply> replyOpt = replyRepository.findById(id);
 
         if(replyOpt.isEmpty()) {
-            throw new EntityNotFoundException("Reply not found by id: " + id);
+            throw new ReplyNotFoundException(id);
         }
 
         Reply reply = replyOpt.get();
