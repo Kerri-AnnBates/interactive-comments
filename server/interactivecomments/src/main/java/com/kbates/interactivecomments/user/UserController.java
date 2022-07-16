@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/api/users")
 public class UserController {
     private final UserService userService;
 
@@ -16,7 +16,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     ResponseEntity<List<User>> findAllUsers() {
         List<User> userList = userService.getUsers();
 
@@ -30,7 +30,7 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     ResponseEntity<User> addUser(@RequestBody User newUser) {
         User addedUser = userService.addUser(newUser);
 

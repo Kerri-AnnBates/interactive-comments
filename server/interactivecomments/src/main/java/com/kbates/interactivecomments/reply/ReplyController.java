@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/replies")
+@RequestMapping(value = "/api/replies")
 public class ReplyController {
     private ReplyService replyService;
 
@@ -25,7 +25,7 @@ public class ReplyController {
         return new ResponseEntity<List<Reply>>(replyService.getAllRepliesForComment(id), HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Reply> addNewReply(@RequestBody Reply reply) {
         return new ResponseEntity<Reply>(replyService.addReply(reply), HttpStatus.CREATED);
     }
