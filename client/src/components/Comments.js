@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
 import Comment from './Comment';
 import CommentsWithReplies from './CommentsWithReplies';
+import { getAllComments } from '../api/api';
 
 const Comments = (props) => {
     const {
@@ -57,6 +58,8 @@ const Comments = (props) => {
     }
 
     useEffect(() => {
+        const comms = getAllComments();
+        console.log(comms);
         if (commentsData) {
             commentsData.comments.sort((a, b) => b.score - a.score);
         }
