@@ -1,5 +1,6 @@
 package com.kbates.interactivecomments.comment;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kbates.interactivecomments.reply.Reply;
 import com.kbates.interactivecomments.user.User;
 
@@ -15,8 +16,10 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long commentId;
     private String content;
-    private LocalDate createdAt;
     private Integer score;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate createdAt;
 
     @ManyToOne
     @JoinColumn(name = "userId")

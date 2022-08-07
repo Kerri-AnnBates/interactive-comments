@@ -1,5 +1,6 @@
 package com.kbates.interactivecomments.reply;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kbates.interactivecomments.comment.Comment;
 import com.kbates.interactivecomments.user.User;
@@ -14,8 +15,10 @@ public class Reply {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long replyId;
     private String content;
-    private LocalDate createdAt;
     private Integer score;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate createdAt;
 
     @Column(updatable = false)
     private String replyingTo;
