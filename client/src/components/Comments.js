@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 import Comment from './Comment';
 import CommentsWithReplies from './CommentsWithReplies';
-import { getAllComments } from '../api/api';
+import { getAllComments, getCurrentUser } from '../api/api';
 
 const Comments = (props) => {
     const {
@@ -15,6 +16,9 @@ const Comments = (props) => {
     } = props;
 
     const [commentsData, setCommentsData] = useContext(CommentsContext);
+    const [currentUserContext, setCurrentUserContext] = useContext(CurrentUserContext);
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const updateVotes = (id, score, parentId = null) => {
 
@@ -58,8 +62,12 @@ const Comments = (props) => {
     }
 
     useEffect(() => {
-        getAllComments().then(data => {
-            console.log(data);
+        getCurrentUser().then(data => console.log(data));
+    }, []);
+
+    useEffect(() => {
+        getAllComments().then(res => {
+            console.log(res.data);
         }).catch(err => {
             console.log(err);
         });
@@ -67,6 +75,7 @@ const Comments = (props) => {
 
     useEffect(() => {
         if (commentsData) {
+            console.log(commentsData);
             commentsData.comments.sort((a, b) => b.score - a.score);
         }
     }, [commentsData?.comments]);

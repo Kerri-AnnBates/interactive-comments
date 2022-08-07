@@ -26,16 +26,16 @@ const Home = () => {
         <main className='home'>
             <div className='container'>
                 <Comments
-                    setIsOpenModal={setIsOpenModal}
-                    setIsEditModalOpen={setIsEditModalOpen}
-                    setCommentToDeleteId={setCommentToDeleteId}
-                    setReplyToDeleteId={setReplyToDeleteId}
-                    setCommentToEditId={setCommentToEditId}
-                    setReplyToEditId={setReplyToEditId}
+                // setIsOpenModal={setIsOpenModal}
+                // setIsEditModalOpen={setIsEditModalOpen}
+                // setCommentToDeleteId={setCommentToDeleteId}
+                // setReplyToDeleteId={setReplyToDeleteId}
+                // setCommentToEditId={setCommentToEditId}
+                // setReplyToEditId={setReplyToEditId}
                 />
                 <AddComment />
             </div>
-            {isModalOpen && (<DeleteModal
+            {/* {isModalOpen && (<DeleteModal
                 setIsOpenModal={setIsOpenModal}
                 setCommentToDeleteId={setCommentToDeleteId}
                 setReplyToDeleteId={setReplyToDeleteId}
@@ -48,7 +48,7 @@ const Home = () => {
                 setReplyToEditId={setReplyToEditId}
                 commentToEditId={commentToEditId}
                 replyToEditId={replyToEditId}
-            />)}
+            />)} */}
         </main>
     )
 }
