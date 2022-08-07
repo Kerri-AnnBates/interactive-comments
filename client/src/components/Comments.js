@@ -58,8 +58,14 @@ const Comments = (props) => {
     }
 
     useEffect(() => {
-        const comms = getAllComments();
-        console.log(comms);
+        getAllComments().then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.log(err);
+        });
+    }, []);
+
+    useEffect(() => {
         if (commentsData) {
             commentsData.comments.sort((a, b) => b.score - a.score);
         }
