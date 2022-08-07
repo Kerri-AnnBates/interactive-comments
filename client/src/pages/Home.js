@@ -5,36 +5,55 @@ import Comments from '../components/Comments';
 import DeleteModal from '../components/DeleteModal';
 import EditCommentModal from '../components/EditCommentModal';
 import CommentsContext from '../contexts/CommentsContext';
+import CurrentUserContext from '../contexts/CurrentUserContext';
+import { getCurrentUser, getAllComments } from '../api/api';
 
 const Home = () => {
-    const [commentsData, setCommentsData] = useContext(CommentsContext);
+    const [comments, setComments] = useContext(CommentsContext);
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+
     const [isModalOpen, setIsOpenModal] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [commentToDeleteId, setCommentToDeleteId] = useState(null);
     const [replyToDeleteId, setReplyToDeleteId] = useState(null);
     const [commentToEditId, setCommentToEditId] = useState(null);
     const [replyToEditId, setReplyToEditId] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // TODO: Fix sorting, it's off by 1 when dynamically changing?
-        data.comments.sort((a, b) => b.score - a.score);
+        getCurrentUser().then(data => {
+            setCurrentUser(data);
+        }).catch(err => console.log(err));
+    }, []);
 
-        setCommentsData(data);
+    useEffect(() => {
+        getAllComments().then(data => {
+            const sortedComments = data.sort((a, b) => b.score - a.score);
+            setComments(sortedComments);
+            setIsLoading(false);
+        }).catch(err => {
+            console.log(err);
+        });
     }, []);
 
     return (
         <main className='home'>
             <div className='container'>
-                <Comments
-                // setIsOpenModal={setIsOpenModal}
-                // setIsEditModalOpen={setIsEditModalOpen}
-                // setCommentToDeleteId={setCommentToDeleteId}
-                // setReplyToDeleteId={setReplyToDeleteId}
-                // setCommentToEditId={setCommentToEditId}
-                // setReplyToEditId={setReplyToEditId}
-                />
-                <AddComment />
+                {isLoading ? (<p>Loading...</p>) : (
+                    <>
+                        <Comments
+                        // setIsOpenModal={setIsOpenModal}
+                        // setIsEditModalOpen={setIsEditModalOpen}
+                        // setCommentToDeleteId={setCommentToDeleteId}
+                        // setReplyToDeleteId={setReplyToDeleteId}
+                        // setCommentToEditId={setCommentToEditId}
+                        // setReplyToEditId={setReplyToEditId}
+                        />
+                        <AddComment />
+                    </>
+                )}
             </div>
+
             {/* {isModalOpen && (<DeleteModal
                 setIsOpenModal={setIsOpenModal}
                 setCommentToDeleteId={setCommentToDeleteId}

@@ -33,7 +33,7 @@ const CommentsWithReplies = (props) => {
                 updateVotes={updateVotes}
             />
 
-            <div className='replies'>
+            {replies.length > 0 && <div className='replies'>
                 {replies.map(reply => (
                     <Comment
                         id={reply.id}
@@ -52,7 +52,7 @@ const CommentsWithReplies = (props) => {
                         setCommentToEditId={setCommentToEditId}
                         updateVotes={updateVotes}
                     />))}
-            </div>
+            </div>}
         </>
     )
 }

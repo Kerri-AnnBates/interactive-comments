@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
-import CurrentUserContext from '../contexts/CurrentUserContext';
 import Comment from './Comment';
 import CommentsWithReplies from './CommentsWithReplies';
-import { getAllComments, getCurrentUser } from '../api/api';
 
 const Comments = (props) => {
     const {
@@ -15,22 +13,19 @@ const Comments = (props) => {
         setReplyToEditId,
     } = props;
 
-    const [commentsData, setCommentsData] = useContext(CommentsContext);
-    const [currentUserContext, setCurrentUserContext] = useContext(CurrentUserContext);
-
-    const [isLoading, setIsLoading] = useState(false);
+    const [comments, setComments] = useContext(CommentsContext);
 
     const updateVotes = (id, score, parentId = null) => {
 
-        if (commentsData) {
+        if (comments) {
             let comment;
 
             if (!parentId) {
-                comment = commentsData.comments.find((comm) => comm.id === id);
+                comment = comments.find((comm) => comm.id === id);
                 comment.score = score;
             } else {
                 // Find parent comment
-                const comment = commentsData.comments.find((comm) => comm.id === parentId);
+                const comment = comments.find((comm) => comm.id === parentId);
                 let reply = comment.replies.find((comm) => comm.id === id);
                 reply.score = score;
 
@@ -46,7 +41,7 @@ const Comments = (props) => {
                 comment.replies = replies;
             }
 
-            const updatedComments = commentsData.comments.map(currComm => {
+            const updatedComments = comments.map(currComm => {
                 if (currComm.id === id) {
                     Object.assign(currComm, comment);
                 }
@@ -54,37 +49,25 @@ const Comments = (props) => {
                 return currComm;
             });
 
-            setCommentsData({
-                ...commentsData,
+            setComments({
+                ...comments,
                 comments: updatedComments
             });
         }
     }
 
     useEffect(() => {
-        getCurrentUser().then(data => console.log(data));
-    }, []);
-
-    useEffect(() => {
-        getAllComments().then(res => {
-            console.log(res.data);
-        }).catch(err => {
-            console.log(err);
-        });
-    }, []);
-
-    useEffect(() => {
-        if (commentsData) {
-            console.log(commentsData);
-            commentsData.comments.sort((a, b) => b.score - a.score);
+        if (comments) {
+            comments.sort((a, b) => b.score - a.score);
         }
-    }, [commentsData?.comments]);
+    }, [comments?.comments]);
 
     return (
         <>
-            {commentsData ? (<div className='comments'>
-                {commentsData.comments && commentsData.comments.map(comment => {
-                    if (comment.replies.length > 0) {
+            <div className='comments'>
+                {
+                    comments.map(comment => {
+
                         return (<CommentsWithReplies
                             id={comment.id}
                             content={comment.content}
@@ -93,35 +76,19 @@ const Comments = (props) => {
                             replies={comment.replies}
                             vote={comment.score}
                             user={comment.user}
-                            currentUser={commentsData.currentUser}
-                            setIsOpenModal={setIsOpenModal}
-                            setCommentToDeleteId={setCommentToDeleteId}
-                            setReplyToDeleteId={setReplyToDeleteId}
-                            setIsEditModalOpen={setIsEditModalOpen}
-                            setReplyToEditId={setReplyToEditId}
-                            setCommentToEditId={setCommentToEditId}
-                            setCommentsData={setCommentsData}
-                            updateVotes={updateVotes}
+                            currentUser={comments.currentUser}
+                        // setIsOpenModal={setIsOpenModal}
+                        // setCommentToDeleteId={setCommentToDeleteId}
+                        // setReplyToDeleteId={setReplyToDeleteId}
+                        // setIsEditModalOpen={setIsEditModalOpen}
+                        // setReplyToEditId={setReplyToEditId}
+                        // setCommentToEditId={setCommentToEditId}
+                        // setComments={setComments}
+                        // updateVotes={updateVotes}
                         />)
-                    } else {
-                        return (<Comment
-                            id={comment.id}
-                            content={comment.content}
-                            createdAt={comment.createdAt}
-                            key={comment.id}
-                            vote={comment.score}
-                            user={comment.user}
-                            currentUser={commentsData.currentUser}
-                            setIsOpenModal={setIsOpenModal}
-                            setCommentToDeleteId={setCommentToDeleteId}
-                            setIsEditModalOpen={setIsEditModalOpen}
-                            setCommentToEditId={setCommentToEditId}
-                            setCommentsData={setCommentsData}
-                            updateVotes={updateVotes}
-                        />)
-                    }
-                })}
-            </div>) : (<p>Loading...</p>)}
+                    })
+                }
+            </div>
         </>
     )
 }
