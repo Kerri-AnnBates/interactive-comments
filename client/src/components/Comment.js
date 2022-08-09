@@ -19,7 +19,12 @@ const Comment = (props) => {
 
     const [currentUser] = useContext(CurrentUserContext);
     const [showReplyBox, setShowReplyBox] = useState(false);
-    const [replying, setReplying] = useState(false);
+    const [isReplying, setIsReplying] = useState(false);
+
+    const toggleReplyBox = () => {
+        setShowReplyBox(!showReplyBox);
+        setIsReplying(!isReplying);
+    }
 
     return (
         <>
@@ -34,16 +39,14 @@ const Comment = (props) => {
                 <Vote vote={vote} updateVotes={updateVotes} id={id} parentId={parentId} />
                 <UserActions
                     id={id}
-                    replying={replying}
+                    isReplying={isReplying}
                     currentUser={currentUser}
                     user={user}
                     replyingTo={replyingTo}
-                // parentId={parentId}
-                // setIsEditModalOpen={setIsEditModalOpen}
-                // setReplyToEditId={setReplyToEditId}
-                // setShowReplyBox={setShowReplyBox}
-                // showReplyBox={showReplyBox}
-                // setReplying={setReplying}
+                    // parentId={parentId}
+                    // setIsEditModalOpen={setIsEditModalOpen}
+                    // setReplyToEditId={setReplyToEditId}
+                    toggleReplyBox={toggleReplyBox}
                 />
             </div>
             {showReplyBox &&
@@ -51,9 +54,8 @@ const Comment = (props) => {
                     id={id}
                     user={user}
                     parentId={parentId}
-                    replying={replying}
-                    setReplying={setReplying}
-                    setShowReplyBox={setShowReplyBox}
+                    isReplying={isReplying}
+                    toggleReplyBox={toggleReplyBox}
                 />
             }
         </>

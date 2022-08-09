@@ -1,17 +1,20 @@
 import React, { useState, useContext } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
 import CurrentUserContext from '../contexts/CurrentUserContext';
+import { addComment } from '../api/api';
 
 const AddComment = (props) => {
-    const { id, user, parentId, isReply, setIsReply, setShowReplyBox } = props;
+    const { id, user, parentId, isReplying, toggleReplyBox } = props;
 
-    const [userCommentValue, setUserCommentValue] = useState('');
+    const [userVal, setUserVal] = useState('');
     const [commentsData, setCommentsData] = useContext(CommentsContext);
     const [currentUser] = useContext(CurrentUserContext);
 
+    console.log("Replying...", isReplying);
+
     const handleAddingComment = (newComment) => {
 
-        if (isReply) {
+        if (isReplying) {
             const targetId = parentId ? parentId : id;
 
             const parentComment = commentsData.comments.find((comm) => comm.id === targetId);
@@ -35,63 +38,56 @@ const AddComment = (props) => {
             });
 
         } else {
-            setCommentsData({
-                ...commentsData,
-                comments: [...commentsData.comments, newComment]
-            });
+            addComment(newComment).then(data => console.log(data)).catch(err => console.log(err));
         }
     }
 
     const handleCommentChange = (e) => {
-        setUserCommentValue(e.target.value);
+        setUserVal(e.target.value);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        userCommentValue.replace(/s/g, '');
+        userVal.replace(/s/g, '');
 
-        if (userCommentValue === '') {
+        if (userVal === '') {
             return;
         }
 
         let comment = {};
 
-        if (isReply) {
+        if (isReplying) {
             const targetId = parentId ? parentId : id;
 
             const targetComment = commentsData.comments.find((comm) => comm.id === targetId);
 
             comment = {
-                content: userCommentValue,
-                createdAt: "Today",
-                id: targetComment.replies.length + 1,
-                parentId: targetId,
+                content: userVal,
+                createdAt: "2022-06-27",
                 replyingTo: user.username,
                 score: 0,
-                user: commentsData.currentUser,
+                user: currentUser
             };
         } else {
             comment = {
-                createdAt: 'Today',
-                content: userCommentValue,
-                id: commentsData.comments.length + 1,
-                user: commentsData.currentUser,
+                createdAt: '2022-06-27',
+                content: userVal,
+                user: currentUser,
                 replies: [],
                 score: 0
             };
         }
 
         handleAddingComment(comment);
-        setUserCommentValue('');
-        setIsReply(false);
-        setShowReplyBox(false);
+        setUserVal('');
+        toggleReplyBox();
     }
 
     return (
         <div className='comment-editor'>
             <form onSubmit={handleSubmit}>
-                <textarea name="comment" value={userCommentValue} onChange={handleCommentChange} placeholder='Add a comment...'></textarea>
+                <textarea name="comment" value={userVal} onChange={handleCommentChange} placeholder='Add a comment...'></textarea>
                 <button className='primary-btn'>Send</button>
             </form>
             <div className='avatar'><img alt='author profile picture' src={currentUser.image} /></div>

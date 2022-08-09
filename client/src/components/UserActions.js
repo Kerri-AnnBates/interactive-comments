@@ -11,12 +11,9 @@ const UserActions = (props) => {
         replyingTo,
         id,
         parentId,
-        isReply,
         setIsEditModalOpen,
         setReplyToEditId,
-        setShowReplyBox,
-        showReplyBox,
-        setIsReply,
+        toggleReplyBox,
     } = props;
 
     const [isDelModalOpen, setIsDelOpenModal] = useState(false);
@@ -52,8 +49,7 @@ const UserActions = (props) => {
     }
 
     const handleReply = () => {
-        setShowReplyBox(!showReplyBox);
-        setIsReply(!isReply);
+        toggleReplyBox();
     }
 
     return (
