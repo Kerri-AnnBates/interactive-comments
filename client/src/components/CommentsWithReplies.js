@@ -29,28 +29,28 @@ const CommentsWithReplies = (props) => {
                 currentUser={currentUser}
                 setIsOpenModal={setIsOpenModal}
                 setCommentToDeleteId={setCommentToDeleteId}
-                setIsEditModalOpen={setIsEditModalOpen}
-                updateVotes={updateVotes}
+            // setIsEditModalOpen={setIsEditModalOpen}
+            // updateVotes={updateVotes}
             />
 
             {replies.length > 0 && <div className='replies'>
                 {replies.map(reply => (
                     <Comment
-                        id={reply.id}
+                        id={reply.replyId}
                         content={reply.content}
                         createdAt={reply.createdAt}
                         vote={reply.score}
                         user={reply.user}
                         replyingTo={reply.replyingTo}
-                        key={`reply-${reply.id}`}
+                        key={`reply-${reply.replyId}`}
                         currentUser={currentUser}
-                        parentId={reply.parentId}
                         setIsOpenModal={setIsOpenModal}
+                        // parentId={reply.parentId}
                         setReplyToDeleteId={setReplyToDeleteId}
-                        setIsEditModalOpen={setIsEditModalOpen}
-                        setReplyToEditId={setReplyToEditId}
-                        setCommentToEditId={setCommentToEditId}
-                        updateVotes={updateVotes}
+                    // setIsEditModalOpen={setIsEditModalOpen}
+                    // setReplyToEditId={setReplyToEditId}
+                    // setCommentToEditId={setCommentToEditId}
+                    // updateVotes={updateVotes}
                     />))}
             </div>}
         </>

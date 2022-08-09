@@ -1,42 +1,29 @@
-import React, { useContext, useEffect } from 'react';
-import CommentsContext from '../contexts/CommentsContext';
+import React, { useEffect } from 'react';
+import { deleteComment, deleteReply } from '../api/api';
 
 const DeleteModal = (props) => {
-    const { setIsOpenModal, setCommentToDeleteId, setReplyToDeleteId, commentToDeleteId, replyToDeleteId } = props;
-    const [commentsData, setCommentsData] = useContext(CommentsContext);
+    const {
+        setIsOpenModal,
+        setCommentToDeleteId,
+        setReplyToDeleteId,
+        commentToDeleteId,
+        replyToDeleteId
+    } = props;
 
-    const deleteComment = () => {
+    const handleDelete = () => {
         if (commentToDeleteId) {
-            const updatedComments = commentsData.comments.filter(comment => comment.id !== commentToDeleteId);
-            setCommentsData({ ...commentsData, comments: updatedComments });
-            setCommentToDeleteId(null);
-            setIsOpenModal(false);
+            deleteComment(commentToDeleteId).then(res => console.log(res));
         } else {
-            // check if it is a reply. how?
-            commentsData.comments.forEach(comm => {
-                if (comm.replies.length > 0) {
-                    // Check if the id matches any of these replies.
-                    const reply = comm.replies.find(rep => rep.id === replyToDeleteId);
-
-                    if (reply) {
-                        const updateReps = comm.replies.filter(rep => rep.id !== replyToDeleteId);
-                        comm.replies = updateReps;
-                    }
-                }
-            });
-
-            handleCancel();
+            deleteReply(replyToDeleteId).then(res => console.log(res));
         }
+
+        handleCancel();
     }
 
     const handleCancel = () => {
         setIsOpenModal(false);
         setCommentToDeleteId(null);
         setReplyToDeleteId(null);
-    }
-
-    const handleDelete = () => {
-        deleteComment();
     }
 
     // Prevent body scrolling when modal is open.

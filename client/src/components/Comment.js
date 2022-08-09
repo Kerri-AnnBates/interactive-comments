@@ -37,20 +37,20 @@ const Comment = (props) => {
 
                 <Vote vote={vote} updateVotes={updateVotes} id={id} parentId={parentId} />
                 <UserActions
+                    id={id}
+                    isReply={isReply}
                     currentUser={currentUser}
                     user={user}
-                    id={id}
-                    parentId={parentId}
+                    // parentId={parentId}
                     setIsOpenModal={setIsOpenModal}
                     setCommentToDeleteId={setCommentToDeleteId}
                     setReplyToDeleteId={setReplyToDeleteId}
-                    setIsEditModalOpen={setIsEditModalOpen}
-                    setCommentToEditId={setCommentToEditId}
-                    setReplyToEditId={setReplyToEditId}
-                    setShowReplyBox={setShowReplyBox}
-                    showReplyBox={showReplyBox}
-                    setIsReply={setIsReply}
-                    isReply={isReply}
+                // setIsEditModalOpen={setIsEditModalOpen}
+                // setCommentToEditId={setCommentToEditId}
+                // setReplyToEditId={setReplyToEditId}
+                // setShowReplyBox={setShowReplyBox}
+                // showReplyBox={showReplyBox}
+                // setIsReply={setIsReply}
                 />
             </div>
             {showReplyBox &&

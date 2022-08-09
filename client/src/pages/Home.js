@@ -12,10 +12,9 @@ const Home = () => {
     const [comments, setComments] = useContext(CommentsContext);
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 
-    const [isModalOpen, setIsOpenModal] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [commentToDeleteId, setCommentToDeleteId] = useState(null);
-    const [replyToDeleteId, setReplyToDeleteId] = useState(null);
+
+
     const [commentToEditId, setCommentToEditId] = useState(null);
     const [replyToEditId, setReplyToEditId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -54,13 +53,7 @@ const Home = () => {
                 )}
             </div>
 
-            {/* {isModalOpen && (<DeleteModal
-                setIsOpenModal={setIsOpenModal}
-                setCommentToDeleteId={setCommentToDeleteId}
-                setReplyToDeleteId={setReplyToDeleteId}
-                commentToDeleteId={commentToDeleteId}
-                replyToDeleteId={replyToDeleteId}
-            />)}
+            {/*
             {isEditModalOpen && (<EditCommentModal
                 setIsEditModalOpen={setIsEditModalOpen}
                 setCommentToEditId={setCommentToEditId}

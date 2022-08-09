@@ -1,19 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
-import Comment from './Comment';
 import CommentsWithReplies from './CommentsWithReplies';
+import DeleteModal from './DeleteModal';
 
 const Comments = (props) => {
     const {
-        setIsOpenModal,
-        setCommentToDeleteId,
-        setReplyToDeleteId,
         setIsEditModalOpen,
         setCommentToEditId,
         setReplyToEditId,
     } = props;
 
     const [comments, setComments] = useContext(CommentsContext);
+
+    const [isModalOpen, setIsOpenModal] = useState(false);
+    const [commentToDeleteId, setCommentToDeleteId] = useState(null);
+    const [replyToDeleteId, setReplyToDeleteId] = useState(null);
 
     const updateVotes = (id, score, parentId = null) => {
 
@@ -69,17 +70,17 @@ const Comments = (props) => {
                     comments.map(comment => {
 
                         return (<CommentsWithReplies
-                            id={comment.id}
+                            id={comment.commentId}
                             content={comment.content}
                             createdAt={comment.createdAt}
-                            key={comment.id}
+                            key={comment.commentId}
                             replies={comment.replies}
                             vote={comment.score}
                             user={comment.user}
                             currentUser={comments.currentUser}
-                        // setIsOpenModal={setIsOpenModal}
-                        // setCommentToDeleteId={setCommentToDeleteId}
-                        // setReplyToDeleteId={setReplyToDeleteId}
+                            setIsOpenModal={setIsOpenModal}
+                            setCommentToDeleteId={setCommentToDeleteId}
+                            setReplyToDeleteId={setReplyToDeleteId}
                         // setIsEditModalOpen={setIsEditModalOpen}
                         // setReplyToEditId={setReplyToEditId}
                         // setCommentToEditId={setCommentToEditId}
@@ -89,6 +90,14 @@ const Comments = (props) => {
                     })
                 }
             </div>
+
+            {isModalOpen && (<DeleteModal
+                setIsOpenModal={setIsOpenModal}
+                setCommentToDeleteId={setCommentToDeleteId}
+                setReplyToDeleteId={setReplyToDeleteId}
+                commentToDeleteId={commentToDeleteId}
+                replyToDeleteId={replyToDeleteId}
+            />)}
         </>
     )
 }
