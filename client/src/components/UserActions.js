@@ -9,6 +9,7 @@ const UserActions = (props) => {
         user,
         id,
         parentId,
+        isReply,
         setIsOpenModal,
         setCommentToDeleteId,
         setReplyToDeleteId,
@@ -18,7 +19,6 @@ const UserActions = (props) => {
         setShowReplyBox,
         showReplyBox,
         setIsReply,
-        isReply,
     } = props;
 
     const handleDelete = () => {

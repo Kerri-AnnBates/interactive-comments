@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
 const AddComment = (props) => {
     const { id, user, parentId, isReply, setIsReply, setShowReplyBox } = props;
 
     const [userCommentValue, setUserCommentValue] = useState('');
     const [commentsData, setCommentsData] = useContext(CommentsContext);
+    const [currentUser] = useContext(CurrentUserContext);
 
     const handleAddingComment = (newComment) => {
-        console.log("new comment:", newComment);
-        console.log("is reply:", isReply);
 
         if (isReply) {
             const targetId = parentId ? parentId : id;
@@ -94,7 +94,7 @@ const AddComment = (props) => {
                 <textarea name="comment" value={userCommentValue} onChange={handleCommentChange} placeholder='Add a comment...'></textarea>
                 <button className='primary-btn'>Send</button>
             </form>
-            <div className='avatar'><img alt='author profile picture' src={commentsData?.currentUser.image.png} /></div>
+            <div className='avatar'><img alt='author profile picture' src={currentUser.image} /></div>
         </div >
     )
 }
