@@ -6,15 +6,10 @@ import DeleteModal from './DeleteModal';
 const Comments = (props) => {
     const {
         setIsEditModalOpen,
-        setCommentToEditId,
         setReplyToEditId,
     } = props;
 
     const [comments, setComments] = useContext(CommentsContext);
-
-    const [isModalOpen, setIsOpenModal] = useState(false);
-    const [commentToDeleteId, setCommentToDeleteId] = useState(null);
-    const [replyToDeleteId, setReplyToDeleteId] = useState(null);
 
     const updateVotes = (id, score, parentId = null) => {
 
@@ -78,26 +73,14 @@ const Comments = (props) => {
                             vote={comment.score}
                             user={comment.user}
                             currentUser={comments.currentUser}
-                            setIsOpenModal={setIsOpenModal}
-                            setCommentToDeleteId={setCommentToDeleteId}
-                            setReplyToDeleteId={setReplyToDeleteId}
                         // setIsEditModalOpen={setIsEditModalOpen}
                         // setReplyToEditId={setReplyToEditId}
-                        // setCommentToEditId={setCommentToEditId}
                         // setComments={setComments}
                         // updateVotes={updateVotes}
                         />)
                     })
                 }
             </div>
-
-            {isModalOpen && (<DeleteModal
-                setIsOpenModal={setIsOpenModal}
-                setCommentToDeleteId={setCommentToDeleteId}
-                setReplyToDeleteId={setReplyToDeleteId}
-                commentToDeleteId={commentToDeleteId}
-                replyToDeleteId={replyToDeleteId}
-            />)}
         </>
     )
 }

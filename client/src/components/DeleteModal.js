@@ -3,27 +3,22 @@ import { deleteComment, deleteReply } from '../api/api';
 
 const DeleteModal = (props) => {
     const {
-        setIsOpenModal,
-        setCommentToDeleteId,
-        setReplyToDeleteId,
+        cancelDelete,
         commentToDeleteId,
-        replyToDeleteId
+        replyToDeleteId,
     } = props;
 
-    const handleDelete = () => {
+    const handleConfirmation = () => {
+        // Check if it's a reply or comment we're deleting.
         if (commentToDeleteId) {
-            deleteComment(commentToDeleteId).then(res => console.log(res));
+            console.log("Comment to delete: " + commentToDeleteId);
+            deleteComment(commentToDeleteId);
         } else {
-            deleteReply(replyToDeleteId).then(res => console.log(res));
+            console.log("I'm a reply: " + replyToDeleteId);
+            deleteReply(replyToDeleteId);
         }
 
-        handleCancel();
-    }
-
-    const handleCancel = () => {
-        setIsOpenModal(false);
-        setCommentToDeleteId(null);
-        setReplyToDeleteId(null);
+        cancelDelete();
     }
 
     // Prevent body scrolling when modal is open.
@@ -39,8 +34,8 @@ const DeleteModal = (props) => {
                 <h3 className='modal-header'>Delete comment</h3>
                 <p>Are you sure you want to delete this comment? This will remove the comment and can't be undone.</p>
                 <div className='modal-actions'>
-                    <button className='secondary-btn' onClick={handleCancel}>No, cancel</button>
-                    <button className='danger-btn' onClick={handleDelete}>Yes, Delete</button>
+                    <button className='secondary-btn' onClick={cancelDelete}>No, cancel</button>
+                    <button className='danger-btn' onClick={handleConfirmation}>Yes, Delete</button>
                 </div>
             </div>
         </div>

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import data from '../data/data.json';
 import AddComment from '../components/AddComment';
 import Comments from '../components/Comments';
-import DeleteModal from '../components/DeleteModal';
 import EditCommentModal from '../components/EditCommentModal';
 import CommentsContext from '../contexts/CommentsContext';
 import CurrentUserContext from '../contexts/CurrentUserContext';
@@ -41,10 +39,7 @@ const Home = () => {
                 {isLoading ? (<p>Loading...</p>) : (
                     <>
                         <Comments
-                        // setIsOpenModal={setIsOpenModal}
                         // setIsEditModalOpen={setIsEditModalOpen}
-                        // setCommentToDeleteId={setCommentToDeleteId}
-                        // setReplyToDeleteId={setReplyToDeleteId}
                         // setCommentToEditId={setCommentToEditId}
                         // setReplyToEditId={setReplyToEditId}
                         />

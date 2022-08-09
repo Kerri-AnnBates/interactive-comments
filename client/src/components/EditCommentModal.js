@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
 
-const EditCommentModal = ({ setIsEditModalOpen, commentToEditId, replyToEditId, setCommentToEditId, setReplyToEditId }) => {
+const EditCommentModal = ({ setIsEditModalOpen, commentToEditId, replyToEditId, setReplyToEditId }) => {
 
     const [commentsData, setCommentsData] = useContext(CommentsContext);
     const [input, setInput] = useState("");
@@ -79,7 +79,6 @@ const EditCommentModal = ({ setIsEditModalOpen, commentToEditId, replyToEditId, 
 
     const handleCancel = () => {
         setReplyToEditId(null);
-        setCommentToEditId(null);
         setIsEditModalOpen(false);
     }
 

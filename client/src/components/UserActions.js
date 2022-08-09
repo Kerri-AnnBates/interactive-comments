@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import replyIcon from '../images/icon-reply.svg';
 import deleteIcon from '../images/icon-delete.svg';
 import editIcon from '../images/icon-edit.svg';
+import DeleteModal from './DeleteModal';
 
 
 const UserActions = (props) => {
     const { currentUser,
         user,
+        replyingTo,
         id,
         parentId,
         isReply,
-        setIsOpenModal,
-        setCommentToDeleteId,
-        setReplyToDeleteId,
         setIsEditModalOpen,
-        setCommentToEditId,
         setReplyToEditId,
         setShowReplyBox,
         showReplyBox,
         setIsReply,
     } = props;
 
-    const handleDelete = () => {
-        setIsOpenModal(true);
+    const [isDelModalOpen, setIsDelOpenModal] = useState(false);
+    const [commentToDeleteId, setCommentToDeleteId] = useState(null);
+    const [replyToDeleteId, setReplyToDeleteId] = useState(null);
+    const [commentToEditId, setCommentToEditId] = useState(null);
 
-        if (setCommentToDeleteId) {
-            setCommentToDeleteId(id);
-        } else {
+    const cancelDelete = () => {
+        setIsDelOpenModal(false);
+        setCommentToDeleteId(null);
+        setReplyToDeleteId(null);
+    }
+
+    const openDeleteModal = (id) => {
+        setIsDelOpenModal(true);
+
+        if (replyingTo) {
             setReplyToDeleteId(id);
+        } else {
+            setCommentToDeleteId(id);
         }
     }
 
@@ -48,14 +57,22 @@ const UserActions = (props) => {
     }
 
     return (
-        <div className='user-actions'>
-            {(currentUser.username === user.username) ?
-                (<>
-                    <span onClick={handleEdit} ><img alt='edit icon' src={editIcon} /> Edit</span>
-                    <span className='delete' onClick={handleDelete}><img alt='delete icon' src={deleteIcon} /> Delete</span>
-                </>) :
-                (<span onClick={handleReply}><img alt='reply icon' src={replyIcon} /> Reply</span>)}
-        </div>
+        <>
+            <div className='user-actions'>
+                {(currentUser.username === user.username) ?
+                    (<>
+                        <span onClick={handleEdit} ><img alt='edit icon' src={editIcon} /> Edit</span>
+                        <span className='delete' onClick={() => openDeleteModal(id)}><img alt='delete icon' src={deleteIcon} /> Delete</span>
+                    </>) :
+                    (<span onClick={handleReply}><img alt='reply icon' src={replyIcon} /> Reply</span>)}
+            </div>
+
+            {isDelModalOpen && (<DeleteModal
+                cancelDelete={cancelDelete}
+                commentToDeleteId={commentToDeleteId}
+                replyToDeleteId={replyToDeleteId}
+            />)}
+        </>
     )
 }
 

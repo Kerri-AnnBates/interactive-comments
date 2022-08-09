@@ -12,18 +12,14 @@ const Comment = (props) => {
         vote,
         user,
         parentId,
-        setIsOpenModal,
-        setCommentToDeleteId,
-        setReplyToDeleteId,
         setIsEditModalOpen,
-        setCommentToEditId,
         setReplyToEditId,
         updateVotes,
     } = props;
 
     const [currentUser] = useContext(CurrentUserContext);
     const [showReplyBox, setShowReplyBox] = useState(false);
-    const [isReply, setIsReply] = useState(false);
+    const [replying, setReplying] = useState(false);
 
     return (
         <>
@@ -38,19 +34,16 @@ const Comment = (props) => {
                 <Vote vote={vote} updateVotes={updateVotes} id={id} parentId={parentId} />
                 <UserActions
                     id={id}
-                    isReply={isReply}
+                    replying={replying}
                     currentUser={currentUser}
                     user={user}
-                    // parentId={parentId}
-                    setIsOpenModal={setIsOpenModal}
-                    setCommentToDeleteId={setCommentToDeleteId}
-                    setReplyToDeleteId={setReplyToDeleteId}
+                    replyingTo={replyingTo}
+                // parentId={parentId}
                 // setIsEditModalOpen={setIsEditModalOpen}
-                // setCommentToEditId={setCommentToEditId}
                 // setReplyToEditId={setReplyToEditId}
                 // setShowReplyBox={setShowReplyBox}
                 // showReplyBox={showReplyBox}
-                // setIsReply={setIsReply}
+                // setReplying={setReplying}
                 />
             </div>
             {showReplyBox &&
@@ -58,8 +51,8 @@ const Comment = (props) => {
                     id={id}
                     user={user}
                     parentId={parentId}
-                    isReply={isReply}
-                    setIsReply={setIsReply}
+                    replying={replying}
+                    setReplying={setReplying}
                     setShowReplyBox={setShowReplyBox}
                 />
             }
