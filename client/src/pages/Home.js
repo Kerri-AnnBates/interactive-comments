@@ -16,6 +16,11 @@ const Home = () => {
     const [commentToEditId, setCommentToEditId] = useState(null);
     const [replyToEditId, setReplyToEditId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [deleted, setDeleted] = useState(false);
+
+    const confirmDeletion = () => {
+        setDeleted(!deleted);
+    }
 
     useEffect(() => {
         getCurrentUser().then(data => {
@@ -31,7 +36,7 @@ const Home = () => {
         }).catch(err => {
             console.log(err);
         });
-    }, []);
+    }, [deleted]);
 
     return (
         <main className='home'>
@@ -39,6 +44,7 @@ const Home = () => {
                 {isLoading ? (<p>Loading...</p>) : (
                     <>
                         <Comments
+                            confirmDeletion={confirmDeletion}
                         // setIsEditModalOpen={setIsEditModalOpen}
                         // setCommentToEditId={setCommentToEditId}
                         // setReplyToEditId={setReplyToEditId}

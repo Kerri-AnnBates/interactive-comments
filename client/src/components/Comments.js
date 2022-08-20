@@ -4,6 +4,7 @@ import CommentsWithReplies from './CommentsWithReplies';
 
 const Comments = (props) => {
     const {
+        confirmDeletion,
         setIsEditModalOpen,
         setReplyToEditId,
     } = props;
@@ -71,6 +72,7 @@ const Comments = (props) => {
                             replies={comment.replies}
                             vote={comment.score}
                             user={comment.user}
+                            confirmDeletion={confirmDeletion}
                         // setIsEditModalOpen={setIsEditModalOpen}
                         // setReplyToEditId={setReplyToEditId}
                         // setComments={setComments}

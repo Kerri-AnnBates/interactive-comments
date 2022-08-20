@@ -10,6 +10,7 @@ const UserActions = (props) => {
         user,
         replyingTo,
         id,
+        confirmDeletion,
         parentId,
         setIsEditModalOpen,
         setReplyToEditId,
@@ -67,6 +68,7 @@ const UserActions = (props) => {
                 cancelDelete={cancelDelete}
                 commentToDeleteId={commentToDeleteId}
                 replyToDeleteId={replyToDeleteId}
+                confirmDeletion={confirmDeletion}
             />)}
         </>
     )

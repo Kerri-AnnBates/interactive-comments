@@ -11,6 +11,7 @@ const Comment = (props) => {
         replyingTo,
         vote,
         user,
+        confirmDeletion,
         parentId,
         setIsEditModalOpen,
         setReplyToEditId,
@@ -43,6 +44,7 @@ const Comment = (props) => {
                     currentUser={currentUser}
                     user={user}
                     replyingTo={replyingTo}
+                    confirmDeletion={confirmDeletion}
                     // parentId={parentId}
                     // setIsEditModalOpen={setIsEditModalOpen}
                     // setReplyToEditId={setReplyToEditId}

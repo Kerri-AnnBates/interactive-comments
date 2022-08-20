@@ -6,16 +6,26 @@ const DeleteModal = (props) => {
         cancelDelete,
         commentToDeleteId,
         replyToDeleteId,
+        confirmDeletion,
     } = props;
 
     const handleConfirmation = () => {
-        // Check if it's a reply or comment we're deleting.
+
         if (commentToDeleteId) {
-            console.log("Comment to delete: " + commentToDeleteId);
-            deleteComment(commentToDeleteId);
+
+            deleteComment(commentToDeleteId).then(res => {
+                if (res.status == 204) {
+                    confirmDeletion();
+                }
+            }).catch(err => console.log(err));
+
         } else {
-            console.log("I'm a reply: " + replyToDeleteId);
-            deleteReply(replyToDeleteId);
+
+            deleteReply(replyToDeleteId).then(res => {
+                if (res.status) {
+                    confirmDeletion();
+                }
+            }).catch(err => console.log(err));
         }
 
         cancelDelete();
