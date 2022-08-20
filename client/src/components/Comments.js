@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
 import CommentsWithReplies from './CommentsWithReplies';
-import DeleteModal from './DeleteModal';
 
 const Comments = (props) => {
     const {
@@ -72,7 +71,6 @@ const Comments = (props) => {
                             replies={comment.replies}
                             vote={comment.score}
                             user={comment.user}
-                            currentUser={comments.currentUser}
                         // setIsEditModalOpen={setIsEditModalOpen}
                         // setReplyToEditId={setReplyToEditId}
                         // setComments={setComments}
