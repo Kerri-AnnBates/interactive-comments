@@ -13,9 +13,12 @@ public class Reply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long replyId;
+    private Long id;
     private String content;
     private Integer score;
+
+    @Column(name = "isReply", columnDefinition = "boolean default true")
+    private Boolean isReply;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createdAt;
@@ -44,8 +47,8 @@ public class Reply {
         this.user = user;
     }
 
-    public Long getReplyId() {
-        return replyId;
+    public Long getId() {
+        return id;
     }
 
     public String getContent() {

@@ -14,7 +14,7 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long commentId;
+    private Long id;
     private String content;
     private Integer score;
 
@@ -39,8 +39,8 @@ public class Comment {
         this.replies = replies;
     }
 
-    public Long getCommentId() {
-        return commentId;
+    public Long getId() {
+        return id;
     }
 
     public String getContent() {
