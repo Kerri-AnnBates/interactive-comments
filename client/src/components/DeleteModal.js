@@ -9,6 +9,8 @@ const DeleteModal = (props) => {
         confirmDeletion,
     } = props;
 
+    // Refactor notes: Do I just call a get request to get the comment/reply I want to delete when mounted.
+
     const handleConfirmation = () => {
 
         if (commentToDeleteId) {
