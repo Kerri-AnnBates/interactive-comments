@@ -12,15 +12,13 @@ const UserActions = (props) => {
         id,
         confirmDeletion,
         parentId,
-        setIsEditModalOpen,
-        setReplyToEditId,
+        toggleEditMode,
         toggleReplyBox,
     } = props;
 
     const [isDelModalOpen, setIsDelOpenModal] = useState(false);
     const [commentToDeleteId, setCommentToDeleteId] = useState(null);
     const [replyToDeleteId, setReplyToDeleteId] = useState(null);
-    const [commentToEditId, setCommentToEditId] = useState(null);
 
     const cancelDelete = () => {
         setIsDelOpenModal(false);
@@ -39,18 +37,7 @@ const UserActions = (props) => {
     }
 
     const handleEdit = () => {
-        setIsEditModalOpen(true);
-
-        if (!parentId) {
-            setCommentToEditId(id);
-        } else {
-            setCommentToEditId(parentId);
-            setReplyToEditId(id);
-        }
-    }
-
-    const handleReply = () => {
-        toggleReplyBox();
+        toggleEditMode();
     }
 
     return (
@@ -61,7 +48,7 @@ const UserActions = (props) => {
                         <span onClick={handleEdit} ><img alt='edit icon' src={editIcon} /> Edit</span>
                         <span className='delete' onClick={() => openDeleteModal(id)}><img alt='delete icon' src={deleteIcon} /> Delete</span>
                     </>) :
-                    (<span onClick={handleReply}><img alt='reply icon' src={replyIcon} /> Reply</span>)}
+                    (<span onClick={toggleReplyBox}><img alt='reply icon' src={replyIcon} /> Reply</span>)}
             </div>
 
             {isDelModalOpen && (<DeleteModal

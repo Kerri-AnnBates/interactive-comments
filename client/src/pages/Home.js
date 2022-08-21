@@ -9,12 +9,6 @@ import { getCurrentUser, getAllComments } from '../api/api';
 const Home = () => {
     const [comments, setComments] = useContext(CommentsContext);
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
-
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
-
-    const [commentToEditId, setCommentToEditId] = useState(null);
-    const [replyToEditId, setReplyToEditId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [deleted, setDeleted] = useState(false);
 
@@ -45,23 +39,11 @@ const Home = () => {
                     <>
                         <Comments
                             confirmDeletion={confirmDeletion}
-                        // setIsEditModalOpen={setIsEditModalOpen}
-                        // setCommentToEditId={setCommentToEditId}
-                        // setReplyToEditId={setReplyToEditId}
                         />
                         <AddComment />
                     </>
                 )}
             </div>
-
-            {/*
-            {isEditModalOpen && (<EditCommentModal
-                setIsEditModalOpen={setIsEditModalOpen}
-                setCommentToEditId={setCommentToEditId}
-                setReplyToEditId={setReplyToEditId}
-                commentToEditId={commentToEditId}
-                replyToEditId={replyToEditId}
-            />)} */}
         </main>
     )
 }

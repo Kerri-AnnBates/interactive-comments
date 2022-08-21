@@ -73,9 +73,6 @@ const Comments = (props) => {
                             vote={comment.score}
                             user={comment.user}
                             confirmDeletion={confirmDeletion}
-                        // setIsEditModalOpen={setIsEditModalOpen}
-                        // setReplyToEditId={setReplyToEditId}
-                        // setComments={setComments}
                         // updateVotes={updateVotes}
                         />)
                     })
