@@ -1,48 +1,48 @@
 import React, { useState, useContext } from 'react';
-import CommentsContext from '../contexts/CommentsContext';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import { addComment } from '../api/api';
+import { addComment, addReplyToComment } from '../api/api';
+import CommentsContext from '../contexts/CommentsContext';
 
 const AddComment = (props) => {
-    const { id, user, parentId, isReplying, toggleReplyBox } = props;
+    const { user, parentId, isReplying, toggleReplyBox } = props;
 
     const [userVal, setUserVal] = useState('');
-    const [commentsData, setCommentsData] = useContext(CommentsContext);
     const [currentUser] = useContext(CurrentUserContext);
+    const [comments] = useContext(CommentsContext);
 
-    console.log("Replying...", isReplying);
+    const handleAddingComment = (content) => {
 
-    const handleAddingComment = (newComment) => {
+        if (!isReplying) {
+            const comment = {
+                createdAt: '2022-06-27', // TODO: switch to real time date
+                content,
+                user: currentUser,
+                replies: [],
+                score: 0
+            };
 
-        if (isReplying) {
-            const targetId = parentId ? parentId : id;
-
-            const parentComment = commentsData.comments.find((comm) => comm.id === targetId);
-            const newReplies = [...parentComment.replies, newComment];
-
-            // replace replies
-            parentComment.replies = newReplies;
-
-            // replace parent comment in comments list
-            const newComments = commentsData.comments.map(currComm => {
-                if (currComm.id === parentId) {
-                    Object.assign(currComm, parentComment);
-                }
-
-                return currComm;
-            });
-
-            setCommentsData({
-                ...commentsData,
-                comments: newComments
-            });
-
+            addComment(comment).then(({ data }) => console.log(data)).catch(err => console.log(err));
         } else {
-            addComment(newComment).then(data => console.log(data)).catch(err => console.log(err));
+            const targetComment = comments.find((comment) => comment.id === parentId);
+
+            if (targetComment) {
+                const reply = {
+                    content,
+                    createdAt: "2022-06-27", // TODO: switch real time date
+                    replyingTo: user.username,
+                    score: 0,
+                    user: currentUser,
+                    comment: targetComment
+                };
+
+                addReplyToComment(reply, parentId).then(({ data }) => console.log(data)).catch(err => console.log(err));
+            }
+
+            toggleReplyBox();
         }
     }
 
-    const handleCommentChange = (e) => {
+    const handleOnChange = (e) => {
         setUserVal(e.target.value);
     }
 
@@ -55,39 +55,14 @@ const AddComment = (props) => {
             return;
         }
 
-        let comment = {};
-
-        if (isReplying) {
-            const targetId = parentId ? parentId : id;
-
-            const targetComment = commentsData.comments.find((comm) => comm.id === targetId);
-
-            comment = {
-                content: userVal,
-                createdAt: "2022-06-27",
-                replyingTo: user.username,
-                score: 0,
-                user: currentUser
-            };
-        } else {
-            comment = {
-                createdAt: '2022-06-27',
-                content: userVal,
-                user: currentUser,
-                replies: [],
-                score: 0
-            };
-        }
-
-        handleAddingComment(comment);
+        handleAddingComment(userVal);
         setUserVal('');
-        toggleReplyBox();
     }
 
     return (
         <div className='comment-editor'>
             <form onSubmit={handleSubmit}>
-                <textarea name="comment" value={userVal} onChange={handleCommentChange} placeholder='Add a comment...'></textarea>
+                <textarea name="comment" value={userVal} onChange={handleOnChange} placeholder='Add a comment...'></textarea>
                 <button className='primary-btn'>Send</button>
             </form>
             <div className='avatar'><img alt='author profile picture' src={currentUser.image} /></div>

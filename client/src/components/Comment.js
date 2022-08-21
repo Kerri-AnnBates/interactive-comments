@@ -45,7 +45,7 @@ const Comment = (props) => {
                     user={user}
                     replyingTo={replyingTo}
                     confirmDeletion={confirmDeletion}
-                    // parentId={parentId}
+                    parentId={parentId}
                     // setIsEditModalOpen={setIsEditModalOpen}
                     // setReplyToEditId={setReplyToEditId}
                     toggleReplyBox={toggleReplyBox}
@@ -53,7 +53,6 @@ const Comment = (props) => {
             </div>
             {showReplyBox &&
                 <AddComment
-                    id={id}
                     user={user}
                     parentId={parentId}
                     isReplying={isReplying}

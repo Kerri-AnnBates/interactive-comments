@@ -23,6 +23,7 @@ const CommentsWithReplies = (props) => {
                 vote={vote}
                 user={user}
                 confirmDeletion={confirmDeletion}
+                parentId={id}
             // setIsEditModalOpen={setIsEditModalOpen}
             // updateVotes={updateVotes}
             />
@@ -38,7 +39,7 @@ const CommentsWithReplies = (props) => {
                         replyingTo={reply.replyingTo}
                         key={`reply-${reply.id}`}
                         confirmDeletion={confirmDeletion}
-                    // parentId={reply.parentId}
+                        parentId={id}
                     // setIsEditModalOpen={setIsEditModalOpen}
                     // setReplyToEditId={setReplyToEditId}
                     // updateVotes={updateVotes}
