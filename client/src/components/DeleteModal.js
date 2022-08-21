@@ -22,7 +22,7 @@ const DeleteModal = (props) => {
         } else {
 
             deleteReply(replyToDeleteId).then(res => {
-                if (res.status) {
+                if (res.status == 204) {
                     confirmDeletion();
                 }
             }).catch(err => console.log(err));

@@ -23,13 +23,13 @@ const Home = () => {
     }
 
     useEffect(() => {
-        getCurrentUser().then(data => {
+        getCurrentUser().then(({ data }) => {
             setCurrentUser(data);
         }).catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        getAllComments().then(data => {
+        getAllComments().then(({ data }) => {
             const sortedComments = data.sort((a, b) => b.score - a.score);
             setComments(sortedComments);
             setIsLoading(false);
