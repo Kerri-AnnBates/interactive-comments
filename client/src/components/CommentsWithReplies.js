@@ -30,13 +30,13 @@ const CommentsWithReplies = (props) => {
             {replies.length > 0 && <div className='replies'>
                 {replies.map(reply => (
                     <Comment
-                        id={reply.replyId}
+                        id={reply.id}
                         content={reply.content}
                         createdAt={reply.createdAt}
                         vote={reply.score}
                         user={reply.user}
                         replyingTo={reply.replyingTo}
-                        key={`reply-${reply.replyId}`}
+                        key={`reply-${reply.id}`}
                         confirmDeletion={confirmDeletion}
                     // parentId={reply.parentId}
                     // setIsEditModalOpen={setIsEditModalOpen}

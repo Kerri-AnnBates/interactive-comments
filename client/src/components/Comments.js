@@ -65,10 +65,10 @@ const Comments = (props) => {
                     comments.map(comment => {
 
                         return (<CommentsWithReplies
-                            id={comment.commentId}
+                            id={comment.id}
                             content={comment.content}
                             createdAt={comment.createdAt}
-                            key={comment.commentId}
+                            key={comment.id}
                             replies={comment.replies}
                             vote={comment.score}
                             user={comment.user}
