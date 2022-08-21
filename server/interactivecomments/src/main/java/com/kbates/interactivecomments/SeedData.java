@@ -73,7 +73,8 @@ public class SeedData implements CommandLineRunner {
         reply1.setReplyingTo(user3.getUsername());
         reply1.setUser(user4);
         reply1.setComment(comment2);
-        replyService.addReply(reply1);
+        reply1.setIsReply(true);
+        replyService.addReplyToComment(reply1, comment2.getId());
 
 
         Reply reply2 = new Reply();
@@ -83,6 +84,7 @@ public class SeedData implements CommandLineRunner {
         reply2.setReplyingTo(user4.getUsername());
         reply2.setUser(user1);
         reply2.setComment(comment2);
-        replyService.addReply(reply2);
+        reply2.setIsReply(true);
+        replyService.addReplyToComment(reply2, comment2.getId());
     }
 }

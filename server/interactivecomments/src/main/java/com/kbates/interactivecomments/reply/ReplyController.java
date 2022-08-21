@@ -25,9 +25,9 @@ public class ReplyController {
         return new ResponseEntity<List<Reply>>(replyService.getAllRepliesForComment(id), HttpStatus.OK);
     }
 
-    @PostMapping("")
-    public ResponseEntity<Reply> addNewReply(@RequestBody Reply reply) {
-        return new ResponseEntity<Reply>(replyService.addReply(reply), HttpStatus.CREATED);
+    @PostMapping("/comment/{id}")
+    public ResponseEntity<Reply> addNewReply(@RequestBody Reply reply, @PathVariable Long id) {
+        return new ResponseEntity<Reply>(replyService.addReplyToComment(reply, id), HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}")

@@ -20,7 +20,13 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public Reply addReply(Reply reply) {
+    public Reply addReplyToComment(Reply reply, Long commentId) {
+        Optional<Comment> commentOpt = commentRepository.findById(commentId);
+
+        if (commentOpt.isEmpty()) {
+            throw new CommentNotFoundException(commentId);
+        }
+
         return replyRepository.save(reply);
     }
 

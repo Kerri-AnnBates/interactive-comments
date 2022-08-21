@@ -25,7 +25,7 @@ public class Comment {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany(mappedBy = "comment")
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reply> replies = new ArrayList<>();
 
     public Comment() {
