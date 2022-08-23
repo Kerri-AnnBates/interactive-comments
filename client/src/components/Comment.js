@@ -38,7 +38,7 @@ const Comment = (props) => {
                     <div className='comment-details'><span className='avatar'><img alt='author profile picture' src={user.image} /></span> <span className='username'>{user.username}</span> {currentUser === user.username && <span className='user-status'>You</span>} <span className='created-date'>{createdAt}</span></div>
 
                     {
-                        !isEditing ? (<div className='comment-text'><p>{replyingTo && <span className='reply-username'>{'@' + replyingTo}</span>} {content}</p></div>) : (<EditBox />)
+                        !isEditing ? (<div className='comment-text'><p>{replyingTo && <span className='reply-username'>{'@' + replyingTo}</span>} {content}</p></div>) : (<EditBox replyingTo={replyingTo} content={content} />)
                     }
 
                 </div>
