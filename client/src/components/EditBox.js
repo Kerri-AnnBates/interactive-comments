@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getCommentById, getReplyById, updateComment, updateReply } from '../api/api';
 
 function EditBox(props) {
-    const { replyingTo, id } = props;
+    const { replyingTo, id, toggleEditMode } = props;
 
     const [comment, setComment] = useState(null);
-
-    // TODO: Need to make it work for replies also.
 
     useEffect(() => {
         if (replyingTo) {
@@ -26,6 +24,10 @@ function EditBox(props) {
     }
 
     const handleSubmit = () => {
+        if (comment.content === '') {
+            return;
+        }
+
         if (replyingTo) {
             updateReply(id, comment).then(res => {
                 console.log(res);
@@ -44,7 +46,8 @@ function EditBox(props) {
             {replyingTo && (<p>Replying to <span className='reply-username'>@{replyingTo}</span></p>)}
             <textarea value={comment?.content} onChange={handleOnChange}></textarea>
             <button className='primary-btn' onClick={handleSubmit}>Save</button>
-        </div>
+            <button onClick={toggleEditMode} className='secondary-btn'>Cancel</button>
+        </div >
     )
 }
 
