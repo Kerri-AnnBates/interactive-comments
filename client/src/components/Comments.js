@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import CommentsContext from '../contexts/CommentsContext';
 import CommentsWithReplies from './CommentsWithReplies';
 
 const Comments = (props) => {
     const {
         confirmDeletion,
-        setIsEditModalOpen,
-        setReplyToEditId,
     } = props;
 
     const [comments, setComments] = useContext(CommentsContext);

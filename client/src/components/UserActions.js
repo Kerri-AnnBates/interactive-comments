@@ -11,7 +11,6 @@ const UserActions = (props) => {
         replyingTo,
         id,
         confirmDeletion,
-        parentId,
         toggleEditMode,
         toggleReplyBox,
     } = props;

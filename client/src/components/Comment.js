@@ -51,7 +51,6 @@ const Comment = (props) => {
                     user={user}
                     replyingTo={replyingTo}
                     confirmDeletion={confirmDeletion}
-                    parentId={parentId}
                     toggleReplyBox={toggleReplyBox}
                     toggleEditMode={toggleEditMode}
                 />
