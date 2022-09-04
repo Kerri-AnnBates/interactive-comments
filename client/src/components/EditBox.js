@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getCommentById, updateComment } from '../api/api';
+import { getCommentById, getReplyById, updateComment, updateReply } from '../api/api';
 
 function EditBox(props) {
     const { replyingTo, id } = props;
@@ -9,9 +9,16 @@ function EditBox(props) {
     // TODO: Need to make it work for replies also.
 
     useEffect(() => {
-        getCommentById(id).then(({ data }) => {
-            setComment(data);
-        }).catch(err => console.log(err));
+        if (replyingTo) {
+            getReplyById(id).then(({ data }) => {
+                setComment(data);
+            }).catch(err => console.log(err));
+        } else {
+            getCommentById(id).then(({ data }) => {
+                setComment(data);
+            }).catch(err => console.log(err));
+        }
+
     }, []);
 
     const handleOnChange = (e) => {
@@ -19,9 +26,17 @@ function EditBox(props) {
     }
 
     const handleSubmit = () => {
-        updateComment(id, comment).then(res => {
-            console.log(res);
-        }).catch(err => console.log(err));
+        if (replyingTo) {
+            updateReply(id, comment).then(res => {
+                console.log(res);
+            }).catch(err => console.log(err));
+
+        } else {
+            updateComment(id, comment).then(res => {
+                console.log(res);
+            }).catch(err => console.log(err));
+        }
+
     }
 
     return (

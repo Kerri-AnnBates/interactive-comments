@@ -35,3 +35,7 @@ export const addReplyToComment = (reply, commentId) => {
 export const updateComment = (id, comment) => {
     return axios.put(`/comments/${id}`, comment).then(res => res).catch(err => err);
 }
+
+export const updateReply = (id, reply) => {
+    return axios.put(`/replies/${id}`, reply).then(res => res).catch(err => err);
+}
