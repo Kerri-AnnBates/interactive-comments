@@ -30,7 +30,7 @@ public class ReplyController {
         return new ResponseEntity<Reply>(replyService.addReplyToComment(reply, id), HttpStatus.CREATED);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Reply> updateReplyById(@PathVariable Long id, @RequestBody Reply reply) {
         return new ResponseEntity<Reply>(replyService.updateReplyById(id, reply), HttpStatus.OK);
     }
