@@ -1,28 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getCommentById, getReplyById } from '../api/api';
+import { updateVotes } from '../utils/updateVotes';
 
-const Vote = ({ vote, updateVotes, id, parentId }) => {
-    const [voteCount, setVoteCount] = useState(vote);
+const Vote = ({ id, replyingTo }) => {
+    const [voteCount, setVoteCount] = useState(null);
+    const [voteUpdated, setVoteUpdated] = useState(false);
+    const [commentDetail, setCommentDetail] = useState(null);
 
     useEffect(() => {
-        if (updateVotes) {
-            if (parentId) {
-                updateVotes(id, voteCount, parentId);
-            } else {
-                updateVotes(id, voteCount);
-            }
+        if (!replyingTo) {
+            getCommentById(id).then(({ data }) => {
+                console.log(data);
+                setCommentDetail(data);
+                setVoteCount(data.score);
+            }).catch(err => console.log(err));
+        } else {
+            getReplyById(id).then(({ data }) => {
+                console.log(data);
+                setCommentDetail(data);
+                setVoteCount(data.score);
+            }).catch(err => console.log(err));
         }
-    }, [voteCount]);
+    }, [voteUpdated]);
 
     const handleVoteCount = (e) => {
         const aciton = e.target.dataset.value;
+        let count = voteCount;
 
         if (aciton === 'plus') {
-            setVoteCount((vote) => vote + 1);
+            count += 1;
         }
 
         if (aciton === 'minus') {
-            setVoteCount((vote) => vote - 1);
+            count -= 1;
         }
+
+        updateVotes(commentDetail, count).then((data) => {
+            setVoteUpdated(!voteUpdated);
+        }).catch(err => console.log(err));
     }
 
     return (

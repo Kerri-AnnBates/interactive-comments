@@ -10,11 +10,10 @@ const Comment = (props) => {
         content,
         createdAt,
         replyingTo,
-        vote,
         user,
         confirmDeletion,
         parentId,
-        updateVotes,
+        isReply,
     } = props;
 
     const [currentUser] = useContext(CurrentUserContext);
@@ -43,7 +42,7 @@ const Comment = (props) => {
 
                 </div>
 
-                <Vote vote={vote} updateVotes={updateVotes} id={id} parentId={parentId} />
+                <Vote id={id} replyingTo={replyingTo} />
                 <UserActions
                     id={id}
                     isReplying={isReplying}

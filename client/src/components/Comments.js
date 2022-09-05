@@ -9,47 +9,6 @@ const Comments = (props) => {
 
     const [comments, setComments] = useContext(CommentsContext);
 
-    const updateVotes = (id, score, parentId = null) => {
-
-        if (comments) {
-            let comment;
-
-            if (!parentId) {
-                comment = comments.find((comm) => comm.id === id);
-                comment.score = score;
-            } else {
-                // Find parent comment
-                const comment = comments.find((comm) => comm.id === parentId);
-                let reply = comment.replies.find((comm) => comm.id === id);
-                reply.score = score;
-
-                // update replies to the parent
-                const replies = comment.replies.map(currReply => {
-                    if (currReply.id === id) {
-                        Object.assign(currReply, reply);
-                    }
-
-                    return currReply;
-                });
-
-                comment.replies = replies;
-            }
-
-            const updatedComments = comments.map(currComm => {
-                if (currComm.id === id) {
-                    Object.assign(currComm, comment);
-                }
-
-                return currComm;
-            });
-
-            setComments({
-                ...comments,
-                comments: updatedComments
-            });
-        }
-    }
-
     useEffect(() => {
         if (comments) {
             comments.sort((a, b) => b.score - a.score);
@@ -68,10 +27,8 @@ const Comments = (props) => {
                             createdAt={comment.createdAt}
                             key={comment.id}
                             replies={comment.replies}
-                            vote={comment.score}
                             user={comment.user}
                             confirmDeletion={confirmDeletion}
-                        // updateVotes={updateVotes}
                         />)
                     })
                 }
