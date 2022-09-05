@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kbates.interactivecomments.comment.Comment;
 import com.kbates.interactivecomments.user.User;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Reply {
@@ -21,8 +20,8 @@ public class Reply {
     @Column(name = "isReply", columnDefinition = "boolean default true")
     private Boolean isReply = true;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime createdAt;
 
     @Column(updatable = false)
     private String replyingTo;
@@ -39,7 +38,7 @@ public class Reply {
     public Reply() {
     }
 
-    public Reply(String content, LocalDate createdAt, Integer score, String replyingTo, Comment comment, User user) {
+    public Reply(String content, LocalDateTime createdAt, Integer score, String replyingTo, Comment comment, User user) {
         this.content = content;
         this.createdAt = createdAt;
         this.score = score;
@@ -68,11 +67,11 @@ public class Reply {
         this.isReply = isReply;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

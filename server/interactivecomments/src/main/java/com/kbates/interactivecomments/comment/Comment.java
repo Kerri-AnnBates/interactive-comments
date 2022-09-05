@@ -5,7 +5,7 @@ import com.kbates.interactivecomments.reply.Reply;
 import com.kbates.interactivecomments.user.User;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +18,8 @@ public class Comment {
     private String content;
     private Integer score;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "userId")
@@ -31,7 +31,7 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String content, LocalDate createdAt, Integer score, User user, List<Reply> replies) {
+    public Comment(String content, LocalDateTime createdAt, Integer score, User user, List<Reply> replies) {
         this.content = content;
         this.createdAt = createdAt;
         this.score = score;
@@ -51,11 +51,11 @@ public class Comment {
         this.content = content;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

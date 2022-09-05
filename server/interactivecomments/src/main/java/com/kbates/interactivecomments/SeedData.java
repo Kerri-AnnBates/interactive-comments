@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
 public class SeedData implements CommandLineRunner {
@@ -27,7 +28,7 @@ public class SeedData implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         // Get current date
-        LocalDate today = LocalDate.now();
+        LocalDateTime today = LocalDateTime.now();
 
         // Users
         User user1 = new User();
