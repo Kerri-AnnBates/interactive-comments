@@ -28,13 +28,15 @@ function EditBox(props) {
             return;
         }
 
+        const updates = { content: comment.content }
+
         if (replyingTo) {
-            updateReply(id, comment).then(res => {
+            updateReply(id, updates).then(res => {
                 console.log(res);
             }).catch(err => console.log(err));
 
         } else {
-            updateComment(id, comment).then(res => {
+            updateComment(id, updates).then(res => {
                 console.log(res);
             }).catch(err => console.log(err));
         }
