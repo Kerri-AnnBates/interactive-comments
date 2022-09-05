@@ -13,7 +13,6 @@ const Comment = (props) => {
         user,
         confirmDeletion,
         parentId,
-        isReply,
     } = props;
 
     const [currentUser] = useContext(CurrentUserContext);

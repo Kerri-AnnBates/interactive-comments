@@ -10,13 +10,11 @@ const Vote = ({ id, replyingTo }) => {
     useEffect(() => {
         if (!replyingTo) {
             getCommentById(id).then(({ data }) => {
-                console.log(data);
                 setCommentDetail(data);
                 setVoteCount(data.score);
             }).catch(err => console.log(err));
         } else {
             getReplyById(id).then(({ data }) => {
-                console.log(data);
                 setCommentDetail(data);
                 setVoteCount(data.score);
             }).catch(err => console.log(err));
