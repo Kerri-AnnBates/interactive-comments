@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import { addComment, addReplyToComment } from '../api/api';
 import CommentsContext from '../contexts/CommentsContext';
+import moment from 'moment';
 
 const AddComment = (props) => {
     const { user, parentId, isReplying, toggleReplyBox } = props;
@@ -10,11 +11,13 @@ const AddComment = (props) => {
     const [currentUser] = useContext(CurrentUserContext);
     const [comments] = useContext(CommentsContext);
 
+    const today = moment().format('yyyy-MM-DD HH:mm');
+
     const handleAddingComment = (content) => {
 
         if (!isReplying) {
             const comment = {
-                createdAt: '2022-06-27', // TODO: switch to real time date
+                createdAt: today,
                 content,
                 user: currentUser,
                 replies: [],
@@ -28,7 +31,7 @@ const AddComment = (props) => {
             if (targetComment) {
                 const reply = {
                     content,
-                    createdAt: "2022-06-27", // TODO: switch real time date
+                    createdAt: today,
                     replyingTo: user.username,
                     score: 0,
                     user: currentUser,

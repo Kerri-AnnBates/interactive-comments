@@ -4,6 +4,7 @@ import UserActions from './UserActions';
 import AddComment from './AddComment';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import EditBox from './EditBox';
+import moment from 'moment';
 
 const Comment = (props) => {
     const { id,
@@ -33,7 +34,7 @@ const Comment = (props) => {
         <>
             <div className={`comment ${replyingTo ? 'reply' : ''}`}>
                 <div className='content-container'>
-                    <div className='comment-details'><span className='avatar'><img alt='author profile picture' src={user.image} /></span> <span className='username'>{user.username}</span> {currentUser === user.username && <span className='user-status'>You</span>} <span className='created-date'>{createdAt}</span></div>
+                    <div className='comment-details'><span className='avatar'><img alt='author profile picture' src={user.image} /></span> <span className='username'>{user.username}</span> {currentUser === user.username && <span className='user-status'>You</span>} <span className='created-date'>{moment(createdAt, 'yyyy-MM-DD HH:mm').fromNow()}</span></div>
 
                     {
                         !isEditing ? (<div className='comment-text'><p>{replyingTo && <span className='reply-username'>{'@' + replyingTo}</span>} {content}</p></div>) : (<EditBox replyingTo={replyingTo} content={content} id={id} toggleEditMode={toggleEditMode} />)
