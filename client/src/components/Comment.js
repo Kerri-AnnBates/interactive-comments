@@ -13,6 +13,8 @@ const Comment = (props) => {
         replyingTo,
         user,
         confirmDeletion,
+        confirmAddition,
+        confirmUpdate,
         parentId,
     } = props;
 
@@ -37,7 +39,7 @@ const Comment = (props) => {
                     <div className='comment-details'><span className='avatar'><img alt='author profile picture' src={user.image} /></span> <span className='username'>{user.username}</span> {currentUser === user.username && <span className='user-status'>You</span>} <span className='created-date'>{moment(createdAt, 'yyyy-MM-DD HH:mm').fromNow()}</span></div>
 
                     {
-                        !isEditing ? (<div className='comment-text'><p>{replyingTo && <span className='reply-username'>{'@' + replyingTo}</span>} {content}</p></div>) : (<EditBox replyingTo={replyingTo} content={content} id={id} toggleEditMode={toggleEditMode} />)
+                        !isEditing ? (<div className='comment-text'><p>{replyingTo && <span className='reply-username'>{'@' + replyingTo}</span>} {content}</p></div>) : (<EditBox replyingTo={replyingTo} content={content} id={id} toggleEditMode={toggleEditMode} confirmUpdate={confirmUpdate} />)
                     }
 
                 </div>
@@ -55,7 +57,7 @@ const Comment = (props) => {
                 />
             </div>
 
-            {showReplyBox && <AddComment user={user} parentId={parentId} isReplying={isReplying} toggleReplyBox={toggleReplyBox} />}
+            {showReplyBox && <AddComment user={user} parentId={parentId} isReplying={isReplying} toggleReplyBox={toggleReplyBox} confirmAddition={confirmAddition} />}
         </>
     )
 }

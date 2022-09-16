@@ -5,9 +5,11 @@ import CommentsWithReplies from './CommentsWithReplies';
 const Comments = (props) => {
     const {
         confirmDeletion,
+        confirmAddition,
+        confirmUpdate
     } = props;
 
-    const [comments, setComments] = useContext(CommentsContext);
+    const [comments] = useContext(CommentsContext);
 
     useEffect(() => {
         if (comments) {
@@ -29,6 +31,8 @@ const Comments = (props) => {
                             replies={comment.replies}
                             user={comment.user}
                             confirmDeletion={confirmDeletion}
+                            confirmAddition={confirmAddition}
+                            confirmUpdate={confirmUpdate}
                         />)
                     })
                 }

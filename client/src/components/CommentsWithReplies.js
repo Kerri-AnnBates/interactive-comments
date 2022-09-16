@@ -8,6 +8,8 @@ const CommentsWithReplies = (props) => {
         replies,
         user,
         confirmDeletion,
+        confirmAddition,
+        confirmUpdate
     } = props;
 
     return (
@@ -18,6 +20,8 @@ const CommentsWithReplies = (props) => {
                 createdAt={createdAt}
                 user={user}
                 confirmDeletion={confirmDeletion}
+                confirmAddition={confirmAddition}
+                confirmUpdate={confirmUpdate}
                 parentId={id}
             />
 
@@ -31,6 +35,8 @@ const CommentsWithReplies = (props) => {
                         replyingTo={reply.replyingTo}
                         key={`reply-${reply.id}`}
                         confirmDeletion={confirmDeletion}
+                        confirmAddition={confirmAddition}
+                        confirmUpdate={confirmUpdate}
                         parentId={id}
                     />))}
             </div>}

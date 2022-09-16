@@ -5,7 +5,7 @@ import CommentsContext from '../contexts/CommentsContext';
 import moment from 'moment';
 
 const AddComment = (props) => {
-    const { user, parentId, isReplying, toggleReplyBox } = props;
+    const { user, parentId, isReplying, toggleReplyBox, confirmAddition } = props;
 
     const [userVal, setUserVal] = useState('');
     const [currentUser] = useContext(CurrentUserContext);
@@ -24,7 +24,9 @@ const AddComment = (props) => {
                 score: 0
             };
 
-            addComment(comment).then(({ data }) => console.log(data)).catch(err => console.log(err));
+            addComment(comment).then(({ data }) => {
+                confirmAddition();
+            }).catch(err => console.log(err));
         } else {
             const targetComment = comments.find((comment) => comment.id === parentId);
 
@@ -38,7 +40,9 @@ const AddComment = (props) => {
                     comment: targetComment
                 };
 
-                addReplyToComment(reply, parentId).then(({ data }) => console.log(data)).catch(err => console.log(err));
+                addReplyToComment(reply, parentId).then(({ data }) => {
+                    confirmAddition();
+                }).catch(err => console.log(err));
             }
 
             toggleReplyBox();

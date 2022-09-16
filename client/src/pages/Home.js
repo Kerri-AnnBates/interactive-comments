@@ -11,9 +11,19 @@ const Home = () => {
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
     const [isLoading, setIsLoading] = useState(true);
     const [deleted, setDeleted] = useState(false);
+    const [updated, setUpdated] = useState(false);
+    const [added, setAdded] = useState(false);
 
     const confirmDeletion = () => {
         setDeleted(!deleted);
+    }
+
+    const confirmUpdate = () => {
+        setUpdated(!updated);
+    }
+
+    const confirmAddition = () => {
+        setAdded(!added);
     }
 
     useEffect(() => {
@@ -30,7 +40,7 @@ const Home = () => {
         }).catch(err => {
             console.log(err);
         });
-    }, [deleted]);
+    }, [deleted, added, updated]);
 
     return (
         <main className='home'>
@@ -39,8 +49,10 @@ const Home = () => {
                     <>
                         <Comments
                             confirmDeletion={confirmDeletion}
+                            confirmAddition={confirmAddition}
+                            confirmUpdate={confirmUpdate}
                         />
-                        <AddComment />
+                        <AddComment confirmAddition={confirmAddition} />
                     </>
                 )}
             </div>

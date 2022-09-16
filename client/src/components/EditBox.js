@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getCommentById, getReplyById, updateComment, updateReply } from '../api/api';
 
 function EditBox(props) {
-    const { replyingTo, id, toggleEditMode } = props;
+    const { replyingTo, id, toggleEditMode, confirmUpdate } = props;
 
     const [comment, setComment] = useState(null);
 
@@ -32,14 +32,16 @@ function EditBox(props) {
 
         if (replyingTo) {
             updateReply(id, updates).then(res => {
-                console.log(res);
+                confirmUpdate();
             }).catch(err => console.log(err));
 
         } else {
             updateComment(id, updates).then(res => {
-                console.log(res);
+                confirmUpdate();
             }).catch(err => console.log(err));
         }
+
+        toggleEditMode();
 
     }
 
