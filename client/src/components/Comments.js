@@ -11,12 +11,6 @@ const Comments = (props) => {
 
     const [comments] = useContext(CommentsContext);
 
-    useEffect(() => {
-        if (comments) {
-            comments.sort((a, b) => b.score - a.score);
-        }
-    }, [comments?.comments]);
-
     return (
         <>
             <div className='comments'>
